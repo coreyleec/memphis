@@ -1,0 +1,39 @@
+// PHOTO NOT PRESENT
+            
+            // const [frameData, setFrameData] = useState([])
+            // const prettyPictureEvent = {
+            //     onClick: (e) => {
+            //         console.log(props.photo)
+            //         setFrameData(props.photo)
+            //         setOpenModalForm(true)
+            //     }
+            // }
+
+            // PHOTO PRESENT
+            
+            
+           
+            // const emptyFrameEvent = {
+            //     onClick: (e) => {
+            //         console.log(props.photo)
+            //         setModalPhoto(props.photo)
+            //         setOpenPhoto(true)
+            //     }
+            // }
+
+
+            
+            // const functionToggle = () => {
+            //     //function only works on picture frames that are empty
+            //     props.photo.image != null 
+            //     ? emptyFrameEvent()
+            //     : prettyPicture()
+            // }
+            
+            // THESE ARE MY SHOWS
+            
+            // const handleFormClose = () => setOpenModalForm(false)
+            // const handleFormOpen = () => setOpenModalForm(true)
+            
+            // const handleImageClose = () => setOpenPhoto(false)
+            // const handleImageOpen = () => setOpenImage(true)
