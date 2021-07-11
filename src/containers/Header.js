@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
-const Header = () => {
+const Header = (props) => {
 
     
         return (
             <header>
-            <h1 >Corey Lee</h1>            
+            <h1 >{props.currentUser ? props.currentUser.name : "Memphis Project"}</h1>            
             </header>
         )
 

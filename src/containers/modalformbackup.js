@@ -6,22 +6,24 @@ import axios from 'axios'
 import BootStrapTable from 'react-bootstrap-table-next'
 import PaginationFactory from 'react-bootstrap-table2-paginator'
 
-const PhotoBox = (props) => {
+const PhotoBox = (props, nameRef, imageRef, detailRef) => {
             
             let [frames, setFrames] = useState([])
             const [modalPhoto, setModalPhoto] = useState()
             const [upload, setUpload] = useState([])
-            
+            const photo = props.photo
+            const [currentPhoto, setCurrentPhoto] = useState(photo)
 
             
-           
+            const handleClick = () => {
+                setCurrentPhoto(photo)
+                console.log(currentPhoto.id)
+            }
             
 
             const form = useRef() 
 
             
-            
-
                 const handleSubmit = (e) => {
                     e.preventDefault()
                     console.log(e)
@@ -32,7 +34,7 @@ const PhotoBox = (props) => {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            name: "",
+                            name: nameRef.current.value,
                             url: imageRef.current.value,
                             details: detailRef.current.value,
                     })
@@ -41,7 +43,8 @@ const PhotoBox = (props) => {
                     .then(photoObj => {
                         setCurrentPhoto(photoObj)
                         console.log(photoObj)
-                        console.log(imageRef.current.value)}
+                        // console.log(props.imageRef.current.value)
+                    }
                         // (updatedBox) => {
                         //     setUrl(photo.image)
                         //     setDetails(photo.details)
@@ -51,137 +54,120 @@ const PhotoBox = (props) => {
 
                 
     
-                    // alert(imageRef.current.value)
-                 
+                    // alert(props.imageRef.current.value)
 
 
-            const toggleModal = () => {
-                photo.url != null 
-                && setOpenPhoto(!openPhoto)
-               
-            }
-            
-            const nameRef = useRef()
-            const imageRef = useRef()
-            const detailRef = useRef()
-            const [url, setUrl] = useState()
-            const [details, setDetails] = useState()
-            const [name, setName] = useState()
-
-
-
-   const photo = props.photo
-                    const [currentPhoto, setCurrentPhoto] = useState(photo)
-                    const handleClick = () => {
-                        setCurrentPhoto(photo)
-                        console.log(currentPhoto)
-                    }
             const [openModalForm, setOpenModalForm] = useState(false)
             const [openPhoto, setOpenPhoto] = useState(false)
-            const modalToggle = () => {                
+            const modalToggle = () => {   
                 //function fires depending on whether picture frames that are empty
                 photo.url != null 
                 ? setOpenPhoto(!openPhoto)
                 : setOpenModalForm(!openModalForm)
             }
 
+            // const toggleModal = () => {
+            //     setOpenPhoto(!openPhoto)
+            //     setOpenModalForm(!openModalForm)
+            // }
+            
+            // const props.nameRef = useRef()
+            // const props.imageRef = useRef()
+            // const props.detailRef = useRef()
+            // const [url, setUrl] = useState()
+            // const [details, setDetails] = useState()
+            // const [name, setName] = useState()
 
-            // const drop = e => {
-            //     e.preventDefault()
-            //     const box_id = e.dataTransfer.getData('box_id')
-            
-            //     const card = document.getElementById(box_id)
-            //     card.style.display = 'block'
-            
-            //     e.target.appendChild(card)
-            //   }
-            
-            //   const dragOver = e => {
-            //     e.preventDefault()
-            //   }
 
-            
-// PHOTO MODAL
-           
-
-    return (
-                
-    // className="photos"
-        <div 
-            className={photo.url != null
-            ? "picture" : "emptyBox"}
-            onMouseDown={() => props.handleDrag(photo)}
-            onMouseUp={() => props.handleDrop(photo)}
-            >                
-            <img 
-            onClick={(() => modalToggle(handleClick(photo)))}
-                className="photo"
-                loading="lazy"
-                src={photo.url}
-            ></img>
-            
-{/* IMAGE FORM MODAL */}
-            {openModalForm ? 
-                    <Modal key="key"
+// FORM MODAL
+            const ModalForm = () => {
+            return(
+                <Modal 
                     // animation={false}
                     show={openModalForm} 
                     onHide={modalToggle}
-                    
+                    // data-keyboard="false"
                      data-backdrop="static"
                 >
                     <Modal.Header>
                         <button  
                         className="modalBtn"  
-                        onClick={() => setOpenModalForm(!openModalForm)}
+                        onClick={modalToggle}
                         >X</button>
  {/* FORM START */}
                     </Modal.Header>
-                    
                     <form 
-                    onSubmit={(e) => props.addPhoto(e, photo, setOpenModalForm(!openModalForm))}                    
-                    >
+                    ref={form}
+                    // onSubmit={handleSubmit}
+                    onSubmit={(e) => props.addPhoto(currentPhoto)}>
+{/* NAME */}
                         <input 
                         type="text"
                         name="name"
                         placeholder="name"
-                        onChange={(e) => props.handleName(e.target.value)}
+                        
+                        ref={nameRef}
                         />
-                        <input
-                        type="text"
-                        name="details"
-                        placeholder="details"
-                        onChange={(e) => props.handleDetails(e.target.value)}
-                        />
+{/* IMAGE */}
                         <input 
                         type="text"
                         name="image"
                         placeholder="url"
-                        onChange={(e) => props.handleUrl(e.target.value)}
+                        
+                        ref={imageRef}
+                        />
+{/* DETAILS  */}
+                        <input
+                        type="text"
+                        name="details"
+                        placeholder="details"
+                        
+                        ref={detailRef}
                         />
                         <button type="submit">ENTER</button>
                     </form>
                         <p></p>
 
-                </Modal> : null}
- {/* PHOTO MODAL */}
-            {openPhoto ? 
-                    <Modal className="modal"
+                </Modal>)}
+// PHOTO MODAL
+            const EnlargePhotoModal = () => {
+                return(
+                <Modal className="modal"
                     show={openPhoto}  
                     onHide={modalToggle}
                     data-toggle="modal" data-backdrop="static" data-keyboard="false"
                 >
                     <Modal.Header>
                         <button  className="modalBtn"  
-                        onClick={() => setOpenPhoto(!openPhoto)}
+                        onClick={modalToggle}
                         >X</button>
                         </Modal.Header> 
                         <p>{currentPhoto.name}</p>
                         <img 
-                        
-                        src={currentPhoto.url}></img>
+                        // onClick={() => toggleModal()}
+                         src={currentPhoto.url}></img>
                         <p>{currentPhoto.comments}</p>
-                        </Modal> 
-                        : null}
+                    
+
+                </Modal>)}
+
+    return (
+                
+    // className="photos"
+        <div className={photo.url != null
+            ? "picture" : "emptyBox"}
+            >                
+            <img 
+            onClick={(() => modalToggle(handleClick(photo)))}
+                className="photos"
+                loading="lazy"
+                src={photo.url}
+            ></img>
+            
+        {/* IMAGE FORM MODAL */}
+            {openModalForm ? <ModalForm/> : null}
+        {/* PHOTO MODAL */}
+            {openPhoto ? <EnlargePhotoModal/> : null}
            
             
             </div> 
@@ -189,14 +175,28 @@ const PhotoBox = (props) => {
     )
 }
 
+const [currentPhoto, setCurrentPhoto] = useState(photo)
+
+            
+            const handleClick = () => {
+                setCurrentPhoto(photo)
+                console.log(currentPhoto.id)
+            }
+
+const modalToggle = () => {                
+    //function fires depending on whether picture frames that are empty
+    photo.url != null 
+    ? setOpenPhoto(!openPhoto)
+    : setOpenModalForm(!openModalForm)
+}
 export default PhotoBox
 
 
 
  // const handleSubmit = (e) => {
             //     e.preventDefault()
-            //     setUrl(imageRef.current.value)
-            //     setDetails(detailRef.current.valid)
+            //     setUrl(props.imageRef.current.value)
+            //     setDetails(props.detailRef.current.valid)
             //     console.log(url, details)
             // }
 
@@ -216,7 +216,7 @@ export default PhotoBox
             //         )
             //     }
 
-                // alert(imageRef.current.value)
+                // alert(props.imageRef.current.value)
 
 
                            // const addPhoto = (e) => {
@@ -244,29 +244,5 @@ export default PhotoBox
 
 
 
-            // <div 
-            // id={photo.id}
-            // className={photo.url != null
-            // ? "picture" : "emptyBox"}
-            // onMouseDown={() => props.handleDrag(props.photo)}
-            // onDrop={photo.url === null && props.drop}
-            
-            
-            // // draggable={photo.url != null ? "true" : "false"}
-            // >                
-            // <img 
-            //     onClick={(() => modalToggle(handleClick(photo)))}
-            //     // id={photo.id}
-            //     src={photo.url}
-            //     // draggable={photo.url != null ? "true" : "false"}
-            //     onDragStart={photo.url != null && props.dragStart}
-            //     draggable={props.draggable}
-            //         id={props.id}
-            //         className={props.className}
-            //         loading="lazy"
-            //         onDragOver={props.dragOver}
-            //         // onDragOver={dragOver}
-            //         onDragStart={photo.url != null && props.dragStart}
-            //         draggable={photo.url != null ? "true" : "false"}
 
-            // ></img>
+
