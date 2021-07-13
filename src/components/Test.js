@@ -1,17 +1,28 @@
 import React from 'react'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { GridContextProvider, GridDropZone, GridItem, swap } from 'react-grid-dnd'
 import { Modal } from 'react-bootstrap'
    
 const Test = (props) => {
     // target id will only be set if dragging from one dropzone to another.
+    
+    let folderIndex = 0
+    const [folderShown, setFolderShown] = useState(folderIndex)
 
-    const [photos, setPhotos] = useState([])
+    const [photos, setPhotos] = useState()
+    let userFolderIds = (props.userFolders && props.userFolders.map(folder => folder.id))
+    console.log(userFolderIds)
+
+    // const folderFiller = [folderFill, setFolderFill] = useState("oopsie")
+    
       // const [photos, setPhotos] = useState()
+      // useEffect(()  => { 
+        
+      //       }, []) 
+
+
       useEffect(()  => { 
-        // photos.length < 1 &&
-        props.currentUser != null &&
-         fetch(`http://localhost:3000/api/v1/users/${props.currentUser}/photos/`, {
+        props.currentUser && fetch(`http://localhost:3000/api/v1/users/${props.currentUser.id}/photos/`, {
             method: "GET",
             headers: { "Content-Type": "application/json" },
        })
@@ -19,11 +30,10 @@ const Test = (props) => {
             .then((photoArr) => {
              console.log(photoArr)  
               setPhotos(photoArr)
-            }
-            )
-            ;
+            })
             }, []) 
-
+            console.log(photos)
+            // console.log(folderShown)
             // const [userPhotos, setUserPhotos] = useState([])
 
             const [url, setUrl] = useState()
@@ -73,8 +83,6 @@ const Test = (props) => {
     // const handleClick = (image) => { 
     //   console.log(image)
     // }
-
-    console.log(photos)
     
     let [frames, setFrames] = useState([])
     const [upload, setUpload] = useState([])
@@ -88,14 +96,7 @@ const Test = (props) => {
        
     }
     
-    const nameRef = useRef()
-    const imageRef = useRef()
-    const detailRef = useRef()
-   
-
-
-
-
+  
     // const [photo, setCurrentPhoto] = useState(photo)
 
     const [photo, setPhoto] = useState()
@@ -124,11 +125,12 @@ console.log("hello")
         <GridDropZone
           className="grid"
           id="photos"
-          boxesPerRow={4}
+          boxesPerRow={7}
           rowHeight={100}
           style={{ height: "780px" }}
         >
-          {photos != null && photos.map(photo => (
+          {/* {photos != null && photos.map(photo => ( */}
+            {props.userPhotos != null && props.userPhotos.filter(photos => photos.folder_id = userFolderIds[folderShown]).map( photo =>
             <GridItem  className={photo.url != null
               ? "picture" : "emptyBox"} key={photo.id}>
               
@@ -150,7 +152,9 @@ console.log("hello")
               />
               
             </GridItem>
-          ))}
+          )
+          }
+          
         </GridDropZone>
         {/* {placeholder} */}
       </GridContextProvider>
