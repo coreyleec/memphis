@@ -462,7 +462,7 @@ const handleFolderToggle = () => {
             })
             
           
-          
+
           }
 
 
@@ -476,17 +476,53 @@ const handleFolderToggle = () => {
       const nextState = swap(photos, sourceIndex, targetIndex);
       setPhotos(nextState);
     }
+    console.log(photos)
+   const reOrderSubmit = () => {
+      fetch(`http://localhost:3000/api/v1/folders/${folderId}/photos`, {
+            method: "PATCH", 
+            headers: {
+            Authorization: `Bearer ${localStorage.token}`,
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              // name: folderName,
+              // details: "add a description" , 
+              // link: folderLink ,
+              // user_id: currentUser.id,
+          })
+        })
+            .then((r) => r.json())
+            .then((folder) => {
+             console.log("folder", folder)  
+              setPhotos(folder.photos)
+              // setFolderToggle(true)
+            })
+         }
 
-      // fetch(`http://localhost:3000/api/v1/folders/${folderId}/photos`, {
-      //       method: "PATCH",
-      //       headers: { "Content-Type": "application/json" },
-      //  })
-      //       .then((r) => r.json())
-      //       .then((folder) => {
-      //        console.log("folder", folder)  
-      //         setPhotos(folder.photos)
-      //         // setFolderToggle(true)
-      //       })
+
+// fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/links`, {
+        //     method: 'POST'
+        //     , headers: {
+        //         Authorization: `Bearer ${localStorage.token}`,
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //       name: linkName,
+        //       details: "add a description" , 
+        //       link: linkUrl ,
+        //       // user_id: currentUser.id
+        //   })
+        // })
+        // .then(res => res.json())
+        // .then(linkObj => {
+        //   console.log(linkObj)
+        //   setUserLinks([...userLinks, linkObj])
+        //   }
+        // )
+      // }
+      // console.log(userLinks)
+
+      
 
   return (
     <Router>
