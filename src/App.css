@@ -17,13 +17,14 @@
 } */
 
 .name-form {
+  overflow: hidden;
+  text-align: right; 
   font-size: 2.5rem;
-  float: left;
+  float: right;
   margin-top: .001rem;
   /* margin-bottom: .3rem; */
   font-weight: 500;
   line-height: 1;
-  text-align: right;
   font-family: Helvetica, sans-serif;
   /* padding-right: 20px; */
   box-sizing: border-box;
@@ -60,9 +61,15 @@
   display:flex;
   justify-content: space-between;
 }
-  .closeSidebar {
+  .side-bar-open {
     align-content: flex-end;
+    animation-direction: normal; 
   }
+  .side-bar-close {
+    align-content: flex-end;
+    animation-direction: reverse; 
+  }
+
 
   *:focus {
     outline: none;
@@ -228,6 +235,28 @@ article {
     color: rgba(255, 255, 255, 1);
     box-shadow: 0 5px 15px rgba(124, 126, 128, 0.4);
   }
+
+  @keyframes inAnimation {
+    0% {
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  
+  @keyframes outAnimation {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  
   .photo {
     background-color: white;
     outline-color: black;
@@ -345,8 +374,8 @@ article {
 }
 .toggle-switch input[type="checkbox"]:checked + .switch::before {
   transform: translateX(25px);
-  background-color: #ccc;
+  background-color: #ff0000;
 }
 .toggle-switch input[type="checkbox"]:checked + .switch {
-  background-color: #ff0000;
+  background-color:  #ccc;
 }

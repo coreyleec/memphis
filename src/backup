@@ -22,9 +22,10 @@ const App = () => {
   }
 
   const [currentUser, setCurrentUser] = useState("")
-  const [users, setUsers] = useState([])
+  
   const [userPhotos, setUserPhotos] = useState([])
   const [userComments, setUserComments] = useState(null)
+  
   
   const handleCurrentUser = (user) => {
     setCurrentUser(user)
@@ -41,7 +42,6 @@ const App = () => {
   }
 
 // LOGIN 
-const [userId, setUserId] = useState()
 const [name, setName] = useState()
 const [email, setEmail] = useState()
 const [password, setPassword] = useState()
@@ -69,21 +69,19 @@ const loginSubmit = e => {
 
           setUserProfile(!userProfile)
           localStorage.token = user.token
-          setUserId(user.id)
           setCurrentUser(user.user)
           setUserName(user.user.name)
-          setUserEmail(user.user.email)
-          setUserAboutMe(user.user.details)
           setUserLinks(user.links)
           setUserFolders(user.folders)
           setPhotos(user.photos)
-          setUserComments(user.comments)
+          
           // setFolderIds(user.folders.map(folder => folder.id))
+          setUserComments(user.comments)
           // history.push("/userprofile")
           // console.log(folderIds[0])
           })
 }
-console.log(userPhotos)
+
 const signupSubmit = e => {
   e.preventDefault()
       // console.log(data)
@@ -205,22 +203,26 @@ const addFolder = (e, folderName) => {
     )
   }
   console.log(userFolders)
-console.log(userPhotos)
+
 
 // LINKS //
     
     const [linkDetais, setLinkDetails] = useState()
     const [link, setLink] = useState()
     const handleLink = (url) => {setLink(url)}
-  
+
+    const [userlink, setUserLink] = useState()
+    const handleUserLink = (userData) => {
+      setUserLink(userData)}
+      
     const clickLink = (link) => {
       console.log(link)
     }
 
       const [linkNames, setLinkNames] = useState()
       const [linkIds, setLinkIds] = useState()
-      const [userLinks, setUserLinks] = useState([])
-      console.log(userLinks)
+      const [userLinks, setUserLinks] = useState([1])
+
     const handleUserLinks = (linkName, linkUrl) => {
         setLinkNames(linkName)
         setLink(linkUrl)
@@ -247,7 +249,7 @@ console.log(userPhotos)
           .then(res => res.json())
           .then(linkObj => {
             console.log(linkObj)
-            setUserLinks( userLinks.map(link => {
+            setUserLink( userLinks.map(link => {
               if(link.id === linkObj.id) return linkObj
               else return link
             })
@@ -255,100 +257,60 @@ console.log(userPhotos)
         )
       }
 
-const sayHello = () => {
-  console.log("hello")
-}
-
-    const addLink = (e, linkName, linkUrl) => {
+    const addLink = (e, linkName) => {
         e.preventDefault()
-        console.log("hello")
-        // console.log(e)
-        // console.log(linkName)
-        // console.log(linkUrl)
-        
-        // fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/links`, {
-        //     method: 'POST'
-        //     , headers: {
-        //         Authorization: `Bearer ${localStorage.token}`,
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //       name: linkName,
-        //       details: "add a description" , 
-        //       link: linkUrl ,
-        //       // user_id: currentUser.id
-        //   })
-        // })
-        // .then(res => res.json())
-        // .then(linkObj => {
-        //   console.log(linkObj)
-        //   setUserLinks([...userLinks, linkObj])
-        //   }
-        // )
-      }
-      // console.log(userLinks)
-
-
-// EDIT USER INFO
-const [userEmail, setUserEmail] = useState("")
-const [userName, setUserName] = useState("")
-const [userAboutMe, setUserAboutMe] = useState("")  
-
-// EDIT TOGGLE
-const [edit, setEdit] = useState(false)
-
-const editToggle = () => {
-  setEdit(!edit)
-}
-
-const handleEdit = (e) => {
-console.log("hello")  
-}
-
-const updateUserAboutMe = (e, aboutMe) => {
-  e.preventDefault()
-      fetch(`http://localhost:3000/api/v1/users/${currentUser.id}`, {
-        method: 'PATCH', 
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ 
-          details: aboutMe,
-        })
-      })
-        .then(res => res.json())
-        .then(userObj => {
-          console.log(userObj.details)  
-          setUserAboutMe(userObj.details)
-
-        })
-}
-
- 
-  
-    const nameSubmit = (e, newName) => {
-      e.preventDefault()
-      console.log(e, newName, userId)
-          fetch(`http://localhost:3000/api/v1/users/${currentUser.id}`, {
-            method: 'PATCH', 
-            headers: {
-              Authorization: `Bearer ${localStorage.token}`,
-            "Content-Type": "application/json"
+        console.log(e)
+        // console.log(link)
+        // console.log(link.id)
+        console.log(linkName)
+        fetch(`http://localhost:3000/api/v1/links/`, {
+            method: 'POST'
+            , headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify({ 
-              name: newName,
-              // user_id: userId,
-            })
+            body: JSON.stringify({
+              name: linkName,
+              details: "add a description" , 
+              link: link ,
+              user_id: currentUser.id
           })
-            .then(res => res.json())
-            .then(userObj => {
-              console.log(userObj)  
-              setUserName(userObj.name)
+        })
+        .then(res => res.json())
+        .then(linkObj => {
+          console.log(linkObj)
+          setUserLink([...userLinks, linkObj])
+          }
+        )
+      }
+      console.log(userLinks)
 
-            })
-    }
 
+// EDIT USER NAME
+const [userName, setUserName] = useState()
+const changeName = (userName) => {
+  setUserName(userName)
+  console.log(userName)
+}
+const nameSubmit = (e, newName, userId) => {
+  e.preventDefault()
+  console.log(e, newName, userId)
+      // fetch(`http://localhost:3000/api/v1/users`, {
+      //   method: 'PATCH', 
+      //   headers: {
+      //     Authorization: `Bearer ${localStorage.token}`,
+      //   "Content-Type": "application/json"
+      //   },
+      //   body: JSON.stringify({ 
+      //     name: newName,
+      //     user_id: userId,
+      //   })
+      // })
+      //   .then(res => res.json())
+      //   .then(nameObj => {
+      //       setUserName(nameObj)
+      //   })
+}
 
 
 // ADD PHOTO
@@ -391,11 +353,11 @@ const addPhoto = (e, photo) => {
 )      
 }
 
-// const updatePhotoOrder = (e, folderId) => {
+// const updatePhotoOrder = (e, photo) => {
 //   e.preventDefault()
 //   console.log(e)
-//   console.log(folderId)
-//   fetch(`http://localhost:3000/api/v1/folders/${folderId}`, {
+//   console.log(photo)
+//   fetch(`http://localhost:3000/api/v1/photos/`, {
 //       method: 'PATCH'
 //       , headers: {
 //           Authorization: `Bearer ${localStorage.token}`,
@@ -409,9 +371,11 @@ const addPhoto = (e, photo) => {
 //       })
 //   })
 //   .then(res => res.json())
-//   .then(setUserFolders( userFolders.map(folder => {
-//       if(folder.id === folderObj.id) return folderObj
-//       else return folder
+//   .then(photoObj => {
+//     console.log(photoObj)
+//     setPhotos( photos.map(photo => {
+//       if(photo.id === photoObj.id) return photoObj
+//       else return photo
 //     })
 //   )
 // }
@@ -433,60 +397,52 @@ const addPhoto = (e, photo) => {
         setPhoto(photo)
         console.log(photo)
       }
+      console.log(photo)
 
-// CHOOSE FOLDER
+
+// SHOW FOLDER 
       let folderIndex = 0
       const [folderShown, setFolderShown] = useState(folderIndex)
 
       const [folderId, setFolderId] = useState()
       let userFolderIds = (userFolders.map(folder => folder.id)) 
+      console.log(userFolderIds)
+      const [folderToggle, setFolderToggle] = useState(false)
 
-// TOGGLE FOLDER
+// CHOOSE FOLDER  
     
-const [folderToggle, setFolderToggle] = useState(false)
-const handleFolderToggle = () => {
-  
-}
-
-  const chooseFolder = (folderId) => {
-    
-        fetch(`http://localhost:3000/api/v1/folders/${folderId}/`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-       })
-            .then((r) => r.json())
-            .then((folder) => {
-             console.log("folder", folder)  
-              setPhotos(folder.photos)
-              setFolderToggle(true)
-            })
-            
-          
-          
-          }
-
-
-
-
-        
-
-// DRAG AND DROP
-
-    const onChange = (sourceId, sourceIndex, targetIndex, targetId) => {
-      const nextState = swap(photos, sourceIndex, targetIndex);
-      setPhotos(nextState);
-    }
-
-      // fetch(`http://localhost:3000/api/v1/folders/${folderId}/photos`, {
-      //       method: "PATCH",
+      const chooseFolder = (folderId) => {
+        setFolderToggle(true)
+      //   fetch(`http://localhost:3000/api/v1/folders/${folderId}/`, {
+      //       method: "GET",
       //       headers: { "Content-Type": "application/json" },
       //  })
       //       .then((r) => r.json())
       //       .then((folder) => {
       //        console.log("folder", folder)  
       //         setPhotos(folder.photos)
-      //         // setFolderToggle(true)
       //       })
+            console.log(photos)
+            }
+
+            
+      
+      
+      // const [folderId, setFolderId] = useState(null)
+// TOGGLE FOLDER
+    
+// EDIT TOGGLE
+        const [edit, setEdit] = useState(false)
+        const handleEdit = () => {
+          setEdit(!edit)
+        }
+
+
+// DRAG AND DROP
+    const onChange = (sourceId, sourceIndex, targetIndex, targetId) => {
+      const nextState = swap(photos, sourceIndex, targetIndex);
+      setPhotos(nextState);
+    }
 
   return (
     <Router>
@@ -494,28 +450,26 @@ const handleFolderToggle = () => {
        <div className={"cont"}>
         <SideBar  
               edit={edit}
-              sayHello={sayHello}
-              userFolders={userFolders}
               addFolder={addFolder}
               chooseFolder={chooseFolder}
+              userFolders={userFolders}
+              // changeFolder={changeFolder}
               updateFolder={updateFolder}
               addLink={addLink}
               userLinks={userLinks}
               clickLink={clickLink}
+              // changeFolder={changeFolder}
               updateLink={updateLink}
-              currentUser={currentUser} 
-              updateUserAboutMe={updateUserAboutMe}
-              userAboutMe={userAboutMe}
-              useTemplate={useTemplate}
+              currentUser={currentUser} useTemplate={useTemplate}
               />
-        <Header currentUser={currentUser} userName={userName} 
-        edit={edit} nameSubmit={nameSubmit}  />
-              <AsideRight editToggle={editToggle} 
-              currentUser={currentUser} edit={edit} />
+        <Header currentUser={currentUser} userName={userName} edit={edit} nameSubmit={nameSubmit}   changeName={changeName} />
+              <AsideRight handleEdit={handleEdit} currentUser={currentUser} />
         <main>
 {/* GRID STARTS HERE */}
           { userProfile
           ? <article>
+                
+                
                 <div className="container" >
       <GridContextProvider className="array"  
               onChange={onChange}>
@@ -524,36 +478,25 @@ const handleFolderToggle = () => {
                   boxesPerRow={7} rowHeight={100}
                   style={{ height: "780px" }}
                 >
-
-            { folderToggle != true && userFolderIds != null       
-            ? photos != null && photos.filter(photos => photos.folder_id === userFolderIds[folderShown]).map( photo => 
-               <GridItem  className={photo.url != null
-              ? "picture" : "emptyBox"} key={photo.id}>
-              <img 
-              // onClick={() => handleClick(photo)}
-              onClick={(() => modalToggle(photo))}
-                className="photo"
-                loading="lazy"
-              onDragStart={(e) => {e.preventDefault()}}
-              src={photo.url}
-              className="photo"
-              />
-            </GridItem>)
-            : photos.map(photo =>
+            
+            {photos != null && photos.filter(photos => photos.folder_id === userFolderIds[folderShown]).map(photos => 
             <GridItem  className={photo.url != null
-              ? "picture" : "emptyBox"} key={photo.id}>
-              <img 
-              // onClick={() => handleClick(photo)}
-              onClick={(() => modalToggle(photo))}
-                className="photo"
-                loading="lazy"
-              onDragStart={(e) => {e.preventDefault()}}
-              src={photo.url}
-              className="photo"
+                ? "picture" : "emptyBox"} key={photo.id}>
+                <img onClick={(() => modalToggle(photo))}
+                  className="photo"
+                  loading="lazy"
+                onDragStart={(e) => {e.preventDefault()}}
+                src={photo.url} className="photo"
+                  style={{
+                    // resizeMode: "contain",
+                    // width: "100%",
+                    // height: "100%",
+                    // margin: "",
+                    // padding: "10px",
+                  }}
               />
-              
-            </GridItem>
-          )}
+            </GridItem>)}
+          
         </GridDropZone>
         {/* {placeholder} */}
       </GridContextProvider>
@@ -562,8 +505,9 @@ const handleFolderToggle = () => {
             // animation={false}
             show={openModalForm} 
             onHide={modalToggle}
+            
              data-backdrop="static"
-            >
+        >
             <Modal.Header>
                 <button  
                 className="modalBtn"  
@@ -571,6 +515,7 @@ const handleFolderToggle = () => {
                 >X</button>
 {/* FORM START */}
             </Modal.Header>
+            
             <form 
             onSubmit={(e) => addPhoto(e, photo, setOpenModalForm(!openModalForm))}                    
             >
@@ -618,27 +563,23 @@ const handleFolderToggle = () => {
                 : null}
                 </div>
             </article>
-            : <article>
-              <div className="container" >
-            <UserLoginSignup 
-             
-                signupSubmit={signupSubmit}
-                loginSubmit={loginSubmit}
-                setUserProfile={setUserProfile} 
-                useTemplate={useTemplate} 
-                handleCurrentUser={handleCurrentUser} 
-                handleUserLinks={handleUserLinks}
-                handleUserFolders={handleUserFolders}
+            : <UserLoginSignup 
+            signupSubmit={signupSubmit}
+            loginSubmit={loginSubmit}
+            setUserProfile={setUserProfile} 
+            useTemplate={useTemplate} 
+            handleCurrentUser={handleCurrentUser} 
+            handleUserLinks={handleUserLinks}
+            handleUserFolders={handleUserFolders}
+            
+
             // handleUserPhotos={handleUserPhotos}
             handleUserComments={handleUserComments}
             handleEmail={handleEmail}
             handleName={handleName}
             handlePassword={handlePassword}
             currentUser={currentUser} 
-            useTemplate={useTemplate} />
-            </div>
-            </article>
-            }
+            useTemplate={useTemplate} />}
         </main>
             <footer>
             </footer>
@@ -663,7 +604,7 @@ export default App;
         </main>
             <footer>footer</footer>
         </div>
-        )}/>  */}
+        )}/> */}
 
 
 
@@ -738,3 +679,95 @@ export default App;
 //           ></input>
 //       </form>)
 //       : props.currentUser && props.userLinks.map(link => <p link={link} key={link.id}>{link.name}</p>)} 
+
+
+
+
+
+
+
+
+
+
+
+// EDIT TOGGLE
+const [edit, setEdit] = useState(false)
+
+const editToggle = () => {
+  setEdit(!edit)
+}
+
+const handleEdit = (e) => {
+  // const updateUser = (e, userId, userName, aboutMe) => {
+    setEdit(!edit)  
+  // edit === false &&  e.preventDefault()
+  // // console.log(e, newName, userId)
+  //     fetch(`http://localhost:3000/api/v1/users/${userId}`, {
+  //       method: 'PATCH', 
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.token}`,
+  //       "Content-Type": "application/json"
+  //       },
+  //       body: JSON.stringify({ 
+  //           user_id: userId,
+  //           name: userName,
+  //           // email: userEmail,
+  //           // details: aboutMe,
+
+  //       })
+  //     })
+  //       .then(res => res.json())
+  //       .then(updatedUser => setCurrentUser( users.map(user => {
+  //       if(user.id === updatedUser.id) return updatedUser
+  //       else return user
+  //       // setEdit(!edit)
+  //     })
+  //     )
+  //     )      
+  //   // }
+  
+}
+
+
+
+
+const handleEdit = (e) => {
+console.log("hello")  
+}
+  const updateUser = (e, userId, userName, aboutMe) => {
+    e.preventDefault()
+    setEdit(!edit)  
+  edit === false &&  
+  console.log(userId, userName, userEmail, userAboutMe)
+      fetch(`http://localhost:3000/api/v1/users/`, {
+        method: 'PATCH', 
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ 
+            user_id: userId,
+            name: userName,
+            // email: userEmail,
+            // details: aboutMe,
+
+        })
+      })
+        .then(res => res.json())
+        .then(updatedUser => setCurrentUser( users.map(user => {
+        if(user.id === updatedUser.id) return updatedUser
+        else return user
+        // setEdit(!edit)
+      })
+      )
+      )      
+    }
+
+
+
+
+
+    "I'm a digital creator with a focus in aesthetic research and interactive ui. Memphis Project is a just a name for a series of digital utilities I'd like to create. This is called Image Board. It's both a visual tool for image layout, but also an image portfolio template that can be linked to other digital portfolios by adding links in the side bar. I made this as an excuse to show off some photos, but also as a way of showing my perspective on web design. I also enjoy building bikes, zine design, writing, and over all making. I hope you my creation can be of service to you. expect updates and additions in the near future. "
+
+
+    .sort((a,b) => a - b)

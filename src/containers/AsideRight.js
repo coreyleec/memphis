@@ -6,23 +6,26 @@ import { React, useEffect, useState} from 'react';
 
 const AsideRight = (props) => {
 
-
-
-
     
-        const [isToggled, setIsToggled] = useState(false);
-        const onToggle = () => setIsToggled(!isToggled);
+        // const [isToggled, setIsToggled] = useState(false);
+        // const onToggle = () => setIsToggled(!isToggled);
 
 
     return (
         <aside>
+            {props.currentUser.id != null && 
+            <div>
             <label className="switch-container">
              <label className="toggle-switch">
-            <input type="checkbox" checked={props.edit} onChange={props.handleEdit} />
+            <input type="checkbox" checked={props.edit}
+             onChange={props.editToggle} />
             <span className="switch" />
             </label>
             <p>edit</p>
             </label>
+            <button >submit reorder</button>
+            </div>
+            }
         </aside>
     )
 

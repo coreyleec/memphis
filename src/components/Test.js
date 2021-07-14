@@ -22,7 +22,7 @@ const Test = (props) => {
 
 
       useEffect(()  => { 
-        props.currentUser && fetch(`http://localhost:3000/api/v1/users/${props.currentUser.id}/photos/`, {
+        props.currentUser && fetch(`http://localhost:3000/api/v1/folders/${[0]}/photos/`, {
             method: "GET",
             headers: { "Content-Type": "application/json" },
        })
@@ -132,7 +132,9 @@ console.log("hello")
           {/* {photos != null && photos.map(photo => ( */}
             {props.userPhotos != null && props.userPhotos.filter(photos => photos.folder_id = userFolderIds[folderShown]).map( photo =>
             <GridItem  className={photo.url != null
-              ? "picture" : "emptyBox"} key={photo.id}>
+              ? "picture" : "emptyBox"} key={photo.id}
+              // style={photo.url != null ? mountedStyle : unmountedStyle}
+              >
               
               <img 
               // onClick={() => handleClick(photo)}
