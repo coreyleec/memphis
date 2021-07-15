@@ -473,8 +473,8 @@ const handleFolderToggle = () => {
 // DRAG AND DROP
 
     const onChange = (sourceId, sourceIndex, targetIndex, targetId) => {
-      const nextState = swap(photos, sourceIndex, targetIndex);
-      setPhotos(nextState);
+       const nextState = swap(photos, sourceIndex, targetIndex)
+      setPhotos(nextState)
     }
     console.log(photos)
    const reOrderSubmit = () => {
@@ -522,7 +522,13 @@ const handleFolderToggle = () => {
       // }
       // console.log(userLinks)
 
-      
+      const mountedStyle = {
+        animation: "inAnimation 250ms ease-in"
+      };
+      const unmountedStyle = {
+        animation: "outAnimation 270ms ease-out",
+        animationFillMode: "forwards"
+      };
 
   return (
     <Router>
@@ -554,7 +560,9 @@ const handleFolderToggle = () => {
           ? <article>
                 <div className="container" >
       <GridContextProvider className="array"  
-              onChange={onChange}>
+              
+              onChange={onChange}
+              >
                 <GridDropZone
                   className="grid" id="photos"
                   boxesPerRow={7} rowHeight={100}
@@ -562,32 +570,42 @@ const handleFolderToggle = () => {
                 >
 
             { folderToggle != true && userFolderIds != null       
-            ? photos != null && photos.filter(photos => photos.folder_id === userFolderIds[folderShown]).map( photo => 
-               <GridItem  className={photo.url != null
-              ? "picture" : "emptyBox"} key={photo.id}>
+            ? photos != null && photos.filter(photos => photos.folder_id = userFolderIds[folderShown]).map( photo => 
+               <GridItem key={photo.id} >
+              <div  className={photo.url != null
+              ? "picture" : "emptyBox"}  >
               <img 
               // onClick={() => handleClick(photo)}
               onClick={(() => modalToggle(photo))}
-                className="photo"
+                
                 loading="lazy"
               onDragStart={(e) => {e.preventDefault()}}
               src={photo.url}
+              src={photo.url != null ? photo.url : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="}
               className="photo"
               />
+              </div>
             </GridItem>)
             : photos.map(photo =>
-            <GridItem  className={photo.url != null
-              ? "picture" : "emptyBox"} key={photo.id}>
+            <GridItem
+            style={photo.url = null && edit ? mountedStyle : unmountedStyle}
+            >  
+              
+              <div className={photo.url != null
+                ? "picture" : "emptyBox"} key={photo.id}
+                
+                
+                >
               <img 
               // onClick={() => handleClick(photo)}
               onClick={(() => modalToggle(photo))}
                 className="photo"
                 loading="lazy"
               onDragStart={(e) => {e.preventDefault()}}
-              src={photo.url}
+              src={photo.url != null ? photo.url : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="}
               className="photo"
               />
-              
+              </div>
             </GridItem>
           )}
         </GridDropZone>

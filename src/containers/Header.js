@@ -9,8 +9,8 @@ const Header = (props) => {
         return (
             <header>
             {/* <h1 >{props.currentUser ? props.userName : "Memphis Project"}</h1>             */}
-                 {props.currentUser != null && props.userName != null &&
-                props.edit
+            {/* props.currentUser != null && props.userName != null */}
+                 {props.edit  
                 ?  <form 
                     name={props.currentUser.name} 
                     key={props.currentUser.id} 
@@ -23,7 +23,7 @@ const Header = (props) => {
                             onChange={(e) => changeName(e.target.value)}
                         ></input>
                 </form>
-                : <h1 >{props.currentUser ? props.userName : "Memphis Project"}</h1> 
+                : <h1 >{props.currentUser ? props.userName : "Image Board"}</h1> 
                     }
             </header>
         )

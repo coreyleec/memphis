@@ -36,7 +36,7 @@ const UserLoginSignup = (props) => {
         {userSignUp
         ? <form onSubmit={props.signupSubmit}  >
             {/* <button onClick={() => setUserSignUp(!userSignUp)} className="closeSidebar">X</button> */}
-            <p>sign up</p>
+            {/* <p>sign up</p> */}
             <input type="name" placeholder="name" onChange={(e) => props.handleName(e.target.value)} />
             <input type="email" placeholder="email" onChange={(e) => props.handleEmail(e.target.value)} />
             <input type="password" placeholder="password" onChange={(e) => props.handlePassword(e.target.value)} />

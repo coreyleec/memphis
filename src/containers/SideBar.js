@@ -45,15 +45,14 @@ const changeAboutMe = (newAboutMe) => {setUserAboutMe(newAboutMe)}
 
 console.log(props.userLinks)
     return (
-        <aside className="side-bar" 
+        <aside  
         // onMouseOut={(e) => mouseToggle(e.target)}
         >
                 {/* <button onClick={(() => toggleSideBar())} className="closeSidebar">x</button> */}
-                <div className="slideButton" >
-                <button  className={sideBar ? "side-bar-open" : "side-bar-close"} onClick={(() => toggleSideBar())} >{sideBar ? "x" : "open sidebar"}</button>
+                <div className={sideBar ? "slide-button-right" : "slide-button-left" } >
+                <button  onClick={(() => toggleSideBar())} >{sideBar ? "x" : "open sidebar"}</button>
                 </div>
-           {sideBar
-           ? <div  >    
+            <div className={sideBar ? "side-bar-open" : "side-bar-closed"} >    
 {/* ABOUT ME */}
             {props.userAboutMe != null && props.edit 
                     ? <form 
@@ -73,7 +72,7 @@ console.log(props.userLinks)
                 {props.edit && 
                     <div className="add-item" >
                         <p>folders</p>
-                        <button onClick={() => {setNewFolder(!newFolder)}} >add folder</button>  
+                        <button className="side-bar-button" onClick={() => {setNewFolder(!newFolder)}} >add folder</button>  
                     </div>}
 {/* NEW FOLDER */}
                     { newFolder && props.edit && 
@@ -98,7 +97,7 @@ console.log(props.userLinks)
                     {props.edit && 
                     <div className="add-item" >
                         <p>links</p>
-                        <button onClick={() => {setNewLink(!newLink)}} >add link</button>  
+                        <button className="side-bar-button" onClick={() => {setNewLink(!newLink)}} >add link</button>  
                     </div>}
 {/* NEW LINK FORM */}
                 { newLink && props.edit && <form type="submit" onSubmit={(e) => props.addLink(e, linkName, linkUrl)}> 
@@ -154,9 +153,9 @@ console.log(props.userLinks)
                 <br></br>
                 <button onClick={() => logout()} >log out</button>
                 <button onClick={() => props.useTemplate(setBar(!sideBar))} >use template</button>
-                <p>____ is a visual tool for photographers</p>
+                {/* <p>image board is a visual tool for image curation, as well as a digital portfolio template</p> */}
             </div>
-            : null}
+            
         </aside>
     )
 }

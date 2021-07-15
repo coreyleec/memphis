@@ -771,3 +771,59 @@ console.log("hello")
 
 
     .sort((a,b) => a - b)
+
+
+
+
+.picture {
+    flex-direction: row;
+      flex-wrap: wrap;
+      /* flex-grow: 1;  */
+      /* display: inline-block; */
+     
+  }
+  .picture :hover {
+    /* transform: scale(1.5); */
+    /* height: 145px;
+    width:145px; */
+    transform: scale(2,2)
+  }
+
+
+    .emptyBox {
+    /* color: gainsboro; */
+    
+    /* flex-direction: row; */
+    /* flex-wrap: wrap; */
+    /* flex-grow: 1;  */
+    /* flex: 0 0 100px;
+    width: 100px; */
+    /* display: inline-block;  */
+    /* width:0px;
+    height:0px;
+    padding: 0px;
+    margin: 0px; 
+    outline:none;
+    padding:43px 51px 43px 51px;
+    margin:0 auto 5px auto;
+    background-image:url(/images/download-button-102x86.png);
+    background-repeat:no-repeat */
+    border: none !important;
+    background: transparent !important
+  }
+  img[src=""] {
+    display: none;
+  }
+  .emptyBox .photo:hover {
+    /* color: rgba(255, 255, 255, 1); */
+    color: gainsboro;
+    box-shadow: 0 5px 15px rgba(124, 126, 128, 0.4);
+  }
+  /* IMG[src=''], IMG:not([src])      {opacity:0;} */
+  img[src=""],
+img:not([src]){
+  opacity: 0;
+}
+
+img[src="*"]{
+  opacity: 1;
