@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 // import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Grid from './components/Grid';
+// import Grid from './components/Grid';
+import * as serviceWorker from './containers/serviceWorker';
 
 ReactDOM.render(
   
@@ -18,3 +19,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+

@@ -9,8 +9,8 @@ const Header = (props) => {
         return (
             <header>
             {/* <h1 >{props.currentUser ? props.userName : "Memphis Project"}</h1>             */}
-            {/* props.currentUser != null && props.userName != null */}
-                 {props.edit  
+            {/* props.currentUser != null && props.userName != null && */}
+            {props.edit != true
                 ?  <form 
                     name={props.currentUser.name} 
                     key={props.currentUser.id} 

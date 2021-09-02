@@ -16,6 +16,11 @@
   color: white;
 } */
 
+sidebar-input::placeholder {
+  color: #757575
+
+}
+
 .name-form {
   overflow: hidden;
   text-align: right; 
@@ -32,7 +37,7 @@
   /* font-size: 2em; */
   /* margin-block-start: 0.67em; */
 
-  
+
   color: #212529;
 
   
@@ -44,12 +49,24 @@
 }
 
 button {
-  border-width: 0px;
-  padding:2px;
-  margin: 8px;
-  padding: 5px;
-  
+  /* border-width: 0px; */
+  /* padding:2px; */
+  /* margin: 8px;
+  padding: 5px; */
+  background-color: gainsboro;
 }
+
+.button-flex {
+  display:flex;
+  justify-content: space-between;
+}
+
+.side-bar-add-button {
+  background-color: coral;
+  border: none;
+  font-size: 2rem;
+}
+
 /* border-color: 0; */
 /* button, input, select, textarea {
   margin: 8px;
@@ -77,47 +94,47 @@ button {
 position: absolute;
 }
 
-/* .side-bar-button {
-  height:5px;
-  } */
-  
- 
-
-
 .side-bar-button {
-
+  height:40px;
+  }
+.side-bar-button {
+padding-right: 5px;
 }
-
 .side-bar-closed {
-left: -100%;
-transition: all 2s;
-position: absolute;
-/* margin-top: 3rem; */
-} 
+  left: -100%;
+  transition: all 2s;
+  position: absolute;
+  /* margin-top: 3rem; */
+  } 
+  .break {
+    margin-top: 5rem;
+  }
+  .side-bar-open {
+  
+  left: 2;
+  position: absolute;
+  transition: all 2s;
+  /* left: -0%;
+  transition: all 2s; */
+  }
 
-.side-bar-open {
-  margin-top: 5rem;
-left: 2;
-transition: all 2s;
-/* position: absolute; */
-
- /* transition: all 2s; */
+.about-me {
+  font-size: 1rem;
+  
 }
-
-
-
 .add-item {
   display:flex;
   justify-content: space-between;
+  
 }
-  .side-bar-open {
+  /* .side-bar-open {
     align-content: flex-end;
     animation-direction: normal; 
   }
   .side-bar-close {
     align-content: flex-end;
     animation-direction: reverse; 
-  }
+  } */
 
 
   *:focus {
@@ -128,30 +145,52 @@ input {
   line-height: 1.5;
   border-width: 0;
   margin-top: 0;
-  
 }
 
+.add-item-p {
+  margin-bottom: 0px;
+}
+
+aside:nth-child(1) input {
+  font-size: 2rem;
+      text-align: left;
+      font-family: Helvetica, sans-serif;
+      width: 240px;
+      color: #757575;
+  }
+
+input name-form {
+  font-size: 3.5rem;
+}
 input, select, textarea{
-  color: #212529;
-  margin-bottom: 1rem;
+  /* color: #212529; */
+  /* margin-bottom: 1rem; */
   display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  
+  /* margin-block-start: 1em; */
+  /* margin-block-end: 1em; */
+  /* margin-inline-start: 0px; */
+  /* margin-inline-end: 0px;  */
 }
 img{border:0;}
   body {background-color: coral;}
-
+  img {
+    width: 100%; 
+    align-items: center;
+  }
+  
+  .thumbnail{
+    overflow: hidden;
+    height: 157px;
+  }
   p {
-    font-size: 2rem;
+    font-size: 2rem;    
     text-align: left;
     font-family: Helvetica, sans-serif;
-    
+    /* width: 70px; */
   }
 
   h1 {
+    font-size:3.5rem;
     text-align: right;
     font-family: Helvetica, sans-serif;
     padding-right: 20px;
@@ -188,9 +227,11 @@ aside:nth-child(1) {
   /* background-color: lightgray; */
   padding-top: 5px;
   padding-left: 5px;
+  padding-right: 5px;
   grid-area: leftbar;
   background-color: coral;
 }
+
 
 aside:nth-child(3) {
   /* background-color: lightgray; */
@@ -199,7 +240,7 @@ aside:nth-child(3) {
 }
 
 footer {
-  background-color: lightgray;
+  background-color: lightgrey;
   grid-area: footer;
   min-height: 100px;
 }
@@ -245,6 +286,7 @@ li {
 .grid {
   display: flex;
   flex-direction: column; 
+  
   /* height: 800; */
   /* max-height: 150px; */
   /* overflow-y: none;
@@ -255,7 +297,7 @@ li {
 /* SIDEBAR */
 
 
-.st-effect-1.st-menu {
+/* .st-effect-1.st-menu {
 	visibility: visible;
 	-webkit-transform: translate3d(-100%, 0, 0);
 	transform: translate3d(-100%, 0, 0);
@@ -269,7 +311,7 @@ li {
 
 .st-effect-1.st-menu::after {
 	display: none;
-}
+} */
 
 
 
@@ -279,14 +321,11 @@ li {
 
   
 .picture {
-  /* flex-direction: row; */
-    /* flex-wrap: wrap; */
-    /* flex-grow: 1;  */
-    /* display: inline-block; */
     flex: 0 0 100px;  
 }
 .picture .photo{
   border-radius: 13px;
+  padding: 0px;
 }
 .picture .photo:hover{
   border-radius: 13px;
@@ -302,19 +341,17 @@ li {
   }
   .emptyBox {
     color: gainsboro;
-    /* flex-direction: row; */
-    /* flex-wrap: wrap; */
-    /* flex-grow: 1;  */
     flex: 0 0 100px;
-    width: 100px;
-    /* display: inline-block;  */
+    width: 100px; 
     padding: 0px;
     margin: 0px; 
   }
+
+  
   .emptyBox .photo {
     border-radius: 13px;
     /* box-shadow: -6px 4px 18px 3px #aaaaaa, 0 0 13px -1px #aaaaaa inset; */
-    box-shadow: -3px 3px 5px 2px #aaaaaa, 0 0 10px -3px #aaaaaa inset;
+    box-shadow: -3px 3px 5px 2px #aaaaaa;
     top: 0;
     transition: top ease 0.5s;
     transition: transform 0.3s ease;
@@ -324,22 +361,18 @@ li {
 
   .emptyBox .photo:hover {
     border-radius: 13px;
-    /* box-shadow: -7px ​7px 10px 4px #aaaaaa, 0 0 26px -1px #aaaaaa inset; */
-    /* color: rgba(255, 255, 255, 1); */
-    /* box-shadow: 10px 10px 10px grey, 0 0 10px black; */
-    /* box-shadow: -8px 8px 18px 3px #aaaaaa, 0 0 20px 4px #aaaaaa inset; */
     box-shadow: -7px 7px 10px 4px #aaaaaa, 0 0 10px -1px #aaaaaa inset;
     transform: translateX(2px), translateY(2px);
-    /* top: -10px; */
-    /* box-shadow:  */
-    /* background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #fff 100%); */
-  /* margin-top: -150px; */
-  /* height: 150px; */
-  /* width: 100%; */
-  
   }
 
-
+/* input.folder-form {
+    
+    font-size: 2rem;
+    text-align: left;
+    font-family: Helvetica, sans-serif;
+    width: 170px;
+    color: #212529;
+  } */
 
   .box {
     box-shadow:
@@ -351,8 +384,6 @@ li {
     0 100px 80px rgba(0, 0, 0, 0.12)
   ;
   
-    
-    
     min-height: 200px;
     width: 50vw;
     margin: 100px auto;
@@ -417,13 +448,48 @@ li {
     margin: 10px; 
   }
 
-  
-
-  .modalBtn {
-    text-align: right;
+  .link-cont a {
+    display: block;
   }
 
+  .modalBtn {
+    position: absolute; right: 0;
+    border:none;
+    background-color: coral;
+  }
+  /* modalBtn-two { 
+  
+  } */
+.about-me-cont {
+  width:15rem;
+  display: flex;
+  flex-wrap: wrap;
+}button
+
+div.modal-header {
+background-color: coral;
+}
  
+div.modal-content {
+  border-radius: 13px;
+  background-color: coral
+  
+}
+.modal-backdrop {
+  background-color: green;
+}
+.modal {
+  border-radius: 13px;
+  padding:5px;
+}
+
+div.modal-content form {
+  padding:5px;
+}
+
+div.modal-content form button {  
+  float: right;
+}
 
   .switch-container {
     display:flex;

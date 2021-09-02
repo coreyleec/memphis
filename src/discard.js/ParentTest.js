@@ -1,7 +1,7 @@
 // import React, { PureComponent } from 'react'
 // import React from 'react'
 import { React, useState, useEffect, useRef } from 'react'
-import Test from './Test'
+import Test from '../components/Test'
 
 const ParentTest = () => {
     

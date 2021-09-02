@@ -22,8 +22,10 @@ const UserLoginSignup = (props) => {
 
     return (
         <div>
+            <div classname="button-flex" >
             <button onClick={() => signup()}>sign up</button>
             <button onClick={() => login()} >login</button>
+            </div>
         {userLogin  
         ?<form  onSubmit={props.loginSubmit}   >
             {/* <button onClick={() => setUserLogin(!userLogin)} className="closeSidebar">X</button> */}

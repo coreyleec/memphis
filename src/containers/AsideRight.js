@@ -23,7 +23,7 @@ const AsideRight = (props) => {
             </label>
             <p>edit</p>
             </label>
-            {/* <button >submit reorder</button> */}
+            <button onClick={props.reorderSubmit()} >submit reorder</button>
             </div>
             }
         </aside>

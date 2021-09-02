@@ -767,7 +767,7 @@ console.log("hello")
 
 
 
-    "I'm a digital creator with a focus in aesthetic research and interactive ui. Memphis Project is a just a name for a series of digital utilities I'd like to create. This is called Image Board. It's both a visual tool for image layout, but also an image portfolio template that can be linked to other digital portfolios by adding links in the side bar. I made this as an excuse to show off some photos, but also as a way of showing my perspective on web design. I also enjoy building bikes, zine design, writing, and over all making. I hope you my creation can be of service to you. expect updates and additions in the near future. "
+    "I'm a digital creator with a focus in aesthetic research and interactive ui. Memphis Project is a place where I can showcase digital utilities that I'd like to create. This is called Image Board. It's both a visual tool for image layout, but also an image portfolio template that can be linked to other digital portfolios by adding links in the side bar. I made this as an excuse to show off some photos, but also as a way of showing my perspective on web design. I also enjoy building bikes, zine design, writing, and over all making. I hope you my creation can be of service to you. expect updates and additions in the near future. "
 
 
     .sort((a,b) => a - b)

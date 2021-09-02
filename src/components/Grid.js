@@ -81,7 +81,7 @@
 
 
 
-//         {/* <Frame  id="frame-1" className="frame">
+//         <Frame  id="frame-1" className="frame">
 //             <Photo id="photo-1" className="pic" draggable="true" >
 //             <p> Card One</p>
 
@@ -98,7 +98,7 @@
 //             <Photo id="photo-3" className="pic" draggable="true" >
 //             <p> Card Two</p>
 //             </Photo>
-//         </Frame> */}
+//         </Frame>
 
 //         </main>    
 //         </div>

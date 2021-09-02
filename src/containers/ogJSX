@@ -1,0 +1,141 @@
+// {/* GRID STARTS HERE */}
+//         {userProfile
+//           ? <article>
+//               <div className="container" >
+//                 <GridContextProvider className="array"    
+//                   onChange={onChange}>
+//                 <GridDropZone
+//                   className="grid" id="photos"
+//                     boxesPerRow={7} rowHeight={100}
+//                       style={{ height: "1000px" }}
+//                         >
+// {/* ONLOAD PHOTOS FROM FOLDER AT 0 INDEX LOAD FIRST */}
+//             {folderToggle != true 
+//               && userFolderIds != null       
+//                 ? photos != null 
+//                   && photos.filter(photos => photos.folder_id = userFolderIds[folderShown]).map( photo => 
+//                   <GridItem key={photo.id} >
+//                     <div className={ !edit ? photo.url != null ? "picture" : "edit-picture"
+//                     : photo.url != null ? "picture" : "emptyBox"  }
+//                     // className={photo.url != null? "picture" : "emptyBox"}
+//                       >
+//                       <img 
+//                         // onClick={() => handleClick(photo)}
+//                         onClick={(() => modalToggle(photo))}
+//                           loading="lazy"
+//                             onDragStart={(e) => {e.preventDefault()}}
+//                               // src={photo.url}
+//                             src={photo.url != null ? photo.url : 
+//                           "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="}
+//                         className="photo"
+//                       />
+//                     </div>
+//                 </GridItem>)
+//             : photos.map(photo =>
+//             <GridItem key={photo.id}
+//             // style={photo.url = null && edit ? mountedStyle : unmountedStyle}
+//             >  
+              
+//               <div className={ !edit ? photo.url != null ? "picture" : "edit-picture"
+//               : photo.url != null ? "picture" : "emptyBox"  }
+                
+//                 >
+//               <img 
+//               // onClick={() => handleClick(photo)}
+//               onClick={(() => modalToggle(photo))}
+//                 className="photo"
+//                 loading="lazy"
+//               onDragStart={(e) => {e.preventDefault()}}
+//               src={photo.url != null ? photo.url : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="}
+//               // className="photo"
+//               />
+//               </div>
+//             </GridItem>
+//           )}
+//         </GridDropZone>
+//         {/* {placeholder} */}
+//       </GridContextProvider>
+
+//       {openModalForm ? 
+//             <Modal key="key"
+//             // animation={false}
+//             show={openModalForm} 
+//             onHide={modalToggle}
+//              data-backdrop="static"
+//             >
+//             <Modal.Header>
+//                 <button  
+//                 className="modalBtn"  
+//                 onClick={() => setOpenModalForm(!openModalForm)}
+//                 >X</button>
+// {/* FORM START */}
+//             </Modal.Header>
+//             <form 
+//             onSubmit={(e) => addPhoto(e, photo, setOpenModalForm(!openModalForm))}                    
+//             >
+//                 <input 
+//                 type="text"
+//                 name="name"
+//                 placeholder="name"
+//                 onChange={(e) => setName(e.target.value)}
+//                 />
+//                 <input
+//                 type="text"
+//                 name="details"
+//                 placeholder="details"
+//                 onChange={(e) => setDetails(e.target.value)}
+//                 />
+//                 <input 
+//                 type="text"
+//                 name="image"
+//                 placeholder="url"
+//                 onChange={(e) => setUrl(e.target.value)}
+//                 />
+//                 <button type="submit">ENTER</button>
+//             </form>
+//                 <p></p>
+
+//         </Modal> : null}
+// {/* PHOTO MODAL */}
+//     {openPhoto ? 
+//             <Modal className="modal"
+//             show={openPhoto}  
+//             onHide={modalToggle}
+//             data-toggle="modal" data-backdrop="static" data-keyboard="false"
+//         >
+//             <Modal.Header>
+//                 <button  className="modalBtn"  
+//                 onClick={() => setOpenPhoto(!openPhoto)}
+//                 >X</button>
+//                 </Modal.Header> 
+//                 {/* <p>{photo.name}</p> */}
+//                 {/* <p>{photo.details}</p> */}
+//                 <img 
+                
+//                 src={photo.url}></img>
+//                 </Modal> 
+//                 : null}
+//                 </div>
+//             </article>
+//             : <article>
+//               <div className="container" >
+//             <UserLoginSignup 
+             
+//                 signupSubmit={signupSubmit}
+//                 loginSubmit={loginSubmit}
+//                 setUserProfile={setUserProfile} 
+//                 useTemplate={useTemplate} 
+//                 handleCurrentUser={handleCurrentUser} 
+//                 handleUserLinks={handleUserLinks}
+//                 handleUserFolders={handleUserFolders}
+//             // handleUserPhotos={handleUserPhotos}
+//             handleUserComments={handleUserComments}
+//             handleEmail={handleEmail}
+//             handleName={handleName}
+//             handlePassword={handlePassword}
+//             currentUser={currentUser} 
+//             useTemplate={useTemplate} />
+//             </div>
+//             </article>
+//             }
+//         </main>

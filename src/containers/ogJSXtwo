@@ -1,0 +1,182 @@
+// const startDrag = (e) => {
+//     e.dataTransfer.setData("drag-item", props.dataItem);
+//   }
+
+// <GridContextProvider className="array"    
+// onChange={onChange}>
+
+// {/* ONLOAD PHOTOS FROM FOLDER AT 0 INDEX LOAD FIRST */}
+// {folderToggle != true 
+//     && userFolderIds != null       
+//         ? photos != null 
+//             && photos.filter(photos => photos.folder_id = userFolderIds[folderShown]).map( photo => 
+//                 <GridDropZone className="grid" id="photos" >
+//                      {/* boxesPerRow={7} rowHeight={100} style={{ height: "1000px" }} */}
+//                         <GridItem key={photo.id} >
+//                         <div className={ !edit ? photo.url != null ? "picture" : "edit-picture"
+//                         : photo.url != null ? "picture" : "emptyBox"  }
+//                         // className={photo.url != null ? "picture" : "emptyBox"}
+//                             >
+//                             <img 
+//                             // onClick={() => handleClick(photo)}
+//                             onClick={(() => modalToggle(photo))}
+//                                 loading="lazy"
+//                                 onDragStart={(e) => {e.preventDefault()}}
+//                                     // src={photo.url}
+//                                 src={photo.url != null ? photo.url : 
+//                                 "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="}
+//                             className="photo"
+//                             />
+//                         </div>
+//                         </GridItem>
+//                     </GridDropZone>
+//                 )
+//     : photos.map(photo =>
+//         <GridItem key={photo.id}
+//             // style={photo.url = null && edit ? mountedStyle : unmountedStyle}
+//                 >  
+//                     <div className={ !edit ? photo.url != null ? "picture" : "edit-picture"
+//                         : photo.url != null ? "picture" : "emptyBox"  }>
+//                             <img 
+//                                 // onClick={() => handleClick(photo)}
+//                                 onClick={(() => modalToggle(photo))}
+//                                     className="photo" loading="lazy"
+//                                         onDragStart={(e) => {e.preventDefault()}}
+//                                     src={photo.url != null ? photo.url : 
+//                                 "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="}
+//                                 // className="photo"
+//                             />
+//                     </div>
+//         </GridItem>
+//     )}
+    
+//     {/* {placeholder} */}
+// </GridContextProvider>
+
+
+
+//                                     )
+
+
+// <GridContextProvider className="array"    
+// onChange={onChange}>
+//               <div className="container" >
+
+// {/* ONLOAD PHOTOS FROM FOLDER AT 0 INDEX LOAD FIRST */}
+// {folderToggle != true 
+//     && userFolderIds != null       
+//         ? photos != null 
+//             && photos.filter(photos => photos.folder_id = userFolderIds[folderShown]).map( photo => 
+//                 <GridDropZone className="grid" id="photos" 
+//                     //  boxesPerRow={7} rowHeight={100} 
+//                     // style={{ height: "1000px" }}
+//                 >
+//                         <div className={ !edit ? photo.url != null ? "picture" : "edit-picture"
+//                         : photo.url != null ? "picture" : "emptyBox"  }
+//                         // className={photo.url != null ? "picture" : "emptyBox"}
+//                             >
+//                         <GridItem key={photo.id} >
+//                             <img 
+//                             // onClick={() => handleClick(photo)}
+//                             onClick={(() => modalToggle(photo))}
+//                                 loading="lazy"
+//                                 onDragStart={(e) => {e.preventDefault()}}
+//                                     // src={photo.url}
+//                                 src={photo.url != null ? photo.url : 
+//                                 "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="}
+//                             className="photo"
+//                             />
+//                         </GridItem>
+//                         </div>
+//                     </GridDropZone>
+//                 )
+//     : photos.map(photo =>
+//         <GridItem key={photo.id}
+//             // style={photo.url = null && edit ? mountedStyle : unmountedStyle}
+//                 >  
+//                     <div className={ !edit ? photo.url != null ? "picture" : "edit-picture"
+//                         : photo.url != null ? "picture" : "emptyBox"  }>
+//                             <img 
+//                                 // onClick={() => handleClick(photo)}
+//                                 onClick={(() => modalToggle(photo))}
+//                                     className="photo" loading="lazy"
+//                                         onDragStart={(e) => {e.preventDefault()}}
+//                                     src={photo.url != null ? photo.url : 
+//                                 "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="}
+//                                 // className="photo"
+//                             />
+//                     </div>
+//         </GridItem>
+//     )}
+//     </div>
+//     {/* {placeholder} */}
+// </GridContextProvider>
+
+
+
+
+
+
+
+
+
+
+// {userProfile
+//     ? <article>
+//         <div className="container" >
+//           <GridContextProvider 
+          
+//           className="array"
+
+//             onChange={onChange}>
+//           <GridDropZone
+//             className="grid" id="photos"
+//               boxesPerRow={7} rowHeight={100}
+//                 style={{ height: "1000px" }}
+//                   >
+// {/* ONLOAD PHOTOS FROM FOLDER AT 0 INDEX LOAD FIRST */}
+//       {folderToggle != true 
+//         && userFolderIds != null       
+//           ? photos != null 
+//             && photos.filter(photos => photos.folder_id = userFolderIds[folderShown]).map( photo => 
+//             <GridItem  className="wakka"  key={photo.id} >
+//               <div className={ !edit ? photo.url != null ? "picture" : "edit-picture"
+//               : photo.url != null ? "picture" : "emptyBox"  }
+//               // className={photo.url != null ? "picture" : "emptyBox"}
+//                 >
+//                 <img 
+//                   // onClick={() => handleClick(photo)}
+//                   onClick={(() => modalToggle(photo))}
+//                     loading="lazy"
+//                       onDragStart={(e) => {e.preventDefault()}}
+//                         // src={photo.url}
+//                       src={photo.url != null ? photo.url : 
+//                     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="}
+//                   className="photo"
+//                 />
+//               </div>
+//           </GridItem>)
+//       : photos.map(photo =>
+//       <GridItem key={photo.id}
+//       // style={photo.url = null && edit ? mountedStyle : unmountedStyle}
+//       >  
+        
+//         <div className={ !edit ? photo.url != null ? "picture" : "edit-picture"
+//         : photo.url != null ? "picture" : "emptyBox"  }
+          
+//           >
+//         <img 
+//         // onClick={() => handleClick(photo)}
+//         onClick={(() => modalToggle(photo))}
+//           className="photo"
+//           loading="lazy"
+//         onDragStart={(e) => {e.preventDefault()}}
+//         src={photo.url != null ? photo.url : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="}
+//         // className="photo"
+//         />
+//         </div>
+//       </GridItem>
+//     )}
+//   </GridDropZone>
+//   {/* {placeholder} */}
+// </GridContextProvider>

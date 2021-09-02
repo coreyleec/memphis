@@ -6,7 +6,9 @@ const SideBar = (props) => {
     
 // TOGGLE SIDEBAR
     const [sideBar, setBar] = useState(false)
-    const toggleSideBar = () => {setBar(!sideBar)}
+    const toggleSideBar = () => {
+        setBar(!sideBar) 
+        console.log("betty")}
     // const mouseToggle = (e) => {
     //     console.log(e)
     //     // sideBar === true && e === null && setBar(!sideBar)
@@ -54,51 +56,54 @@ console.log(props.userLinks)
                 </div>
             <div className={sideBar ? "side-bar-open" : "side-bar-closed"} >    
 {/* ABOUT ME */}
+            <div className="break"></div>
+            <div className="about-me-cont" >
             {props.userAboutMe != null && props.edit 
                     ? <form 
                         details={props.userAboutMe} 
                         key={props.currentUser.id} 
                         onSubmit={(e) => props.updateUserAboutMe(e, userAboutMe)}>
-                            <input  
-                            type="text" 
+                            <input type="text" 
+                            className="sidebar-input"
                             defaultValue={props.userAboutMe} 
-                            className="folder-form" 
-                                // value={props.userAboutMe}
-                                onChange={(e) => changeAboutMe(e.target.value)}
-                            ></input>
+                            inputStyle={{color: "#212529"}}
+                            placeholder="add a description" 
+                        onChange={(e) => changeAboutMe(e.target.value)}></input>
                         </form>
-                    : <p onClick={() => setAboutMeToggle()}>{props.userAboutMe}</p>}
+                    : <p style={{cursor: "pointer",fontSize:"1rem", display: "flex", flexStyle: "wrap"}} onClick={() => setAboutMeToggle()}>{props.userAboutMe}</p>}
+
+            </div>
 {/* FOLDER TOGGLE */}
                 {props.edit && 
                     <div className="add-item" >
-                        <p>folders</p>
-                        <button className="side-bar-button" onClick={() => {setNewFolder(!newFolder)}} >add folder</button>  
+                        <p className="add-item-p">folders</p>
+                        <button className="side-bar-add-button" onClick={() => {setNewFolder(!newFolder)}} >+</button>  
                     </div>}
 {/* NEW FOLDER */}
                     { newFolder && props.edit && 
                         <form onSubmit={(e) => props.addFolder(e, folderName)}> 
-                        <input type="text" placeholder=" enter folder name" 
+                        <input type="text" placeholder="folder name" 
                         onChange={(e) => setFolderName(e.target.value)}></input> </form>}
 {/* EDIT FOLDER NAME */}
                 {props.userFolders != null && props.edit 
                     ? props.userFolders.map(folder => 
                         <form folder={folder} key={folder.id} 
-                        onSubmit={(e) => props.updateFolder(e, folderName, folder)}>
-                            <input type="text" 
-                            defaultValue={folder.name} 
-                            className="folder-form" 
+                            onSubmit={(e) => props.updateFolder(e, folderName, folder)}>
+                                <input type="text" 
+                                defaultValue={folder.name} 
+                                className="folder-form" 
                                 // value={folder.name}
                                 onChange={(e) => changeFolder(e.target.value)}
-                            ></input>
-                    </form>)
+                                ></input>
+                        </form>)
                     : props.currentUser && props.userFolders && props.userFolders.map(folder => <p onClick={(e) => props.chooseFolder(folder.id)} folder={folder} key={folder.id}>{folder.name}</p>)
                         }
 {/* LINK FORM TOGGLE */}
                     {props.edit && 
-                    <div className="add-item" >
-                        <p>links</p>
-                        <button className="side-bar-button" onClick={() => {setNewLink(!newLink)}} >add link</button>  
-                    </div>}
+                        <div className="add-item" >
+                            <p className="add-item-p" >links</p>
+                            <button className="side-bar-add-button" onClick={() => {setNewLink(!newLink)}} >+</button>  
+                        </div>}
 {/* NEW LINK FORM */}
                 { newLink && props.edit && <form type="submit" onSubmit={(e) => props.addLink(e, linkName, linkUrl)}> 
                         <input type="text" placeholder=" enter link name" 
@@ -114,22 +119,26 @@ console.log(props.userLinks)
                             onSubmit={(e) => props.updatelink(e, linkName, linkUrl)}>
 {/* LINK NAME INPUT*/}
                             <input type="text" defaultValue={link.name} 
-                            className="sidebar-form" value={link.name}
+                            className="sidebar-form" 
+                            // value={link.name}
                             onChange={(e) => changeLinkName(e.target.value)}
                             ></input>
 {/* LINK URL INPUT */}
                             <input type="text" defaultValue={link.url} 
-                            className="sidebar-form" value={link.url}
+                            className="sidebar-form" 
+                            // value={link.url}
                             onChange={(e) => {setLinkUrl(e.target.value)}}
                             ></input>
                     </form>)
-                    :  props.userLinks.map(link =>
-                        <a href={link.url}> {link.name} </a>
+                    :  <div className="link-cont">
+                        {props.userLinks.map(link =>
+                        <a href={link.url}> {link.name} </a>)}
+                        </div>
                         // <a href="https://example.com/faq.html"> FAQ </a>
                         // <p onClick={(e) => props.clickLink(link.id)} link={link} key={link.id}>{link.name}</p>
-                        )}
+                        }
                  
-                {props.userLinks != null && 
+                {/* {props.userLinks != null && 
                     props.edit
                     ? props.userLinks.map((link) => <form link={link} key={link.id} onSubmit={(e) => props.updatelink(e, linkName, link)}>
                        <input  type="text" defaultValue={link.name} className="link-form" 
@@ -137,12 +146,12 @@ console.log(props.userLinks)
                             onChange={(e) => changeLinkName(e.target.value)}
                         ></input>
                     </form>)
-                    : props.currentUser && props.userLinks.map(link => <p link={link} key={link.id}>{link.name}</p>)} 
+                    : props.currentUser && props.userLinks.map(link => <a href={link.url} link={link} key={link.id}>{link.name}</a>)}  */}
 
                     
              
                 
-                <p>{props.currentUser && props.currentUser.email}</p>
+                {/* <p className="about-me" >{props.currentUser && props.currentUser.email}</p> */}
 
                 {/* <p>use photo portfolio</p>
                 <p>download moon widget</p> */}
@@ -151,8 +160,11 @@ console.log(props.userLinks)
                 <br></br>
                 <br></br>
                 <br></br>
+                <p>Welcome :)</p>
+                <div classname="button-flex" >
                 <button onClick={() => logout()} >log out</button>
                 <button onClick={() => props.useTemplate(setBar(!sideBar))} >use template</button>
+                </div>
                 {/* <p>image board is a visual tool for image curation, as well as a digital portfolio template</p> */}
             </div>
             
