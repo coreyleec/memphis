@@ -147,10 +147,16 @@ input {
   margin-top: 0;
 }
 
-.add-item-p {
+.add-item p {
   margin-bottom: 0px;
+  text-decoration: underline;
 }
-
+a {
+  font-size: 2rem;
+  text-align: left;
+  font-family: Helvetica, sans-serif;
+  width: 240px;
+}
 aside:nth-child(1) input {
   font-size: 2rem;
       text-align: left;

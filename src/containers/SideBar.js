@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { React } from 'react'
-
+import SideBarFolder from '../components/SideBarFolder'
+import SideBarLinks from '../components/SideBarLinks'
 const SideBar = (props) => {
     // console.log(props.folderNames && props.folderNames)
     
@@ -25,21 +26,6 @@ const SideBar = (props) => {
 
 // SIDEBAR BUTTON TRANSITION
     const [buttonState, setButtonState] = useState(false)
-
-
-    
-// ADD FOLDER STATE TOGGLE
-const [newFolder, setNewFolder] = useState(false)
-const newFolderToggle = () => {setNewFolder(!newFolder)}
-const [folderName, setFolderName] = useState("")
-const changeFolder = (folderName) => {setFolderName(folderName)}
-
-// ADD LINK STATE TOGGLE
-const [newLink, setNewLink] = useState(false)
-const newLinkToggle = () => {setNewLink(!newLink)}
-const [linkName, setLinkName] = useState("")
-const changeLinkName = (linkName) => {setLinkName(linkName)}
-const [linkUrl, setLinkUrl] = useState()
 
 // ABOUT ME
 const [userAboutMe, setUserAboutMe] = useState("") 
@@ -73,70 +59,8 @@ console.log(props.userLinks)
                     : <p style={{cursor: "pointer",fontSize:"1rem", display: "flex", flexStyle: "wrap"}} onClick={() => setAboutMeToggle()}>{props.userAboutMe}</p>}
 
             </div>
-{/* FOLDER TOGGLE */}
-                {props.edit && 
-                    <div className="add-item" >
-                        <p className="add-item-p">folders</p>
-                        <button className="side-bar-add-button" onClick={() => {setNewFolder(!newFolder)}} >+</button>  
-                    </div>}
-{/* NEW FOLDER */}
-                    { newFolder && props.edit && 
-                        <form onSubmit={(e) => props.addFolder(e, folderName)}> 
-                        <input type="text" placeholder="folder name" 
-                        onChange={(e) => setFolderName(e.target.value)}></input> </form>}
-{/* EDIT FOLDER NAME */}
-                {props.userFolders != null && props.edit 
-                    ? props.userFolders.map(folder => 
-                        <form folder={folder} key={folder.id} 
-                            onSubmit={(e) => props.updateFolder(e, folderName, folder)}>
-                                <input type="text" 
-                                defaultValue={folder.name} 
-                                className="folder-form" 
-                                // value={folder.name}
-                                onChange={(e) => changeFolder(e.target.value)}
-                                ></input>
-                        </form>)
-                    : props.currentUser && props.userFolders && props.userFolders.map(folder => <p onClick={(e) => props.chooseFolder(folder.id)} folder={folder} key={folder.id}>{folder.name}</p>)
-                        }
-{/* LINK FORM TOGGLE */}
-                    {props.edit && 
-                        <div className="add-item" >
-                            <p className="add-item-p" >links</p>
-                            <button className="side-bar-add-button" onClick={() => {setNewLink(!newLink)}} >+</button>  
-                        </div>}
-{/* NEW LINK FORM */}
-                { newLink && props.edit && <form type="submit" onSubmit={(e) => props.addLink(e, linkName, linkUrl)}> 
-                        <input type="text" placeholder=" enter link name" 
-                        onChange={(e) => changeLinkName(e.target.value)}></input> 
-                        <input type="text" placeholder=" enter link url" 
-                        onChange={(e) => changeLinkName(e.target.value)}></input> 
-                </form>
-                }
-{/* EDIT LINK */}
-                {props.userLinks != undefined && props.userLinks != null && props.edit
-                    ? props.userLinks.map(link => 
-                    <form link={link} key={link.id}                             
-                            onSubmit={(e) => props.updatelink(e, linkName, linkUrl)}>
-{/* LINK NAME INPUT*/}
-                            <input type="text" defaultValue={link.name} 
-                            className="sidebar-form" 
-                            // value={link.name}
-                            onChange={(e) => changeLinkName(e.target.value)}
-                            ></input>
-{/* LINK URL INPUT */}
-                            <input type="text" defaultValue={link.url} 
-                            className="sidebar-form" 
-                            // value={link.url}
-                            onChange={(e) => {setLinkUrl(e.target.value)}}
-                            ></input>
-                    </form>)
-                    :  <div className="link-cont">
-                        {props.userLinks.map(link =>
-                        <a href={link.url}> {link.name} </a>)}
-                        </div>
-                        // <a href="https://example.com/faq.html"> FAQ </a>
-                        // <p onClick={(e) => props.clickLink(link.id)} link={link} key={link.id}>{link.name}</p>
-                        }
+                    <SideBarFolder {...props} />
+                    <SideBarLinks {...props}/>
                  
                 {/* {props.userLinks != null && 
                     props.edit

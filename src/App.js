@@ -594,7 +594,7 @@ const App = () => {
     animation: "outAnimation 270ms ease-out",
     animationFillMode: "forwards",
   };
-
+  const sortPhotos = (a, b) => a.index - b.index;
   return (
     <Router>
       <div className={"cont"}>
@@ -640,14 +640,16 @@ const App = () => {
                     style={{ height: "1000px" }}
                   >
                     {/* ONLOAD PHOTOS FROM FOLDER AT 0 INDEX LOAD FIRST */}
-                    {folderToggle != true && userFolderIds != null
+                    {
+                    folderToggle != true && userFolderIds != null
                       ? photos != null &&
-                        photos
-                          .filter(
-                            (photos) =>
-                              (photos.folder_id = userFolderIds[folderShown])
-                          )
-                          .map((photo) => (
+                    //     photos
+                    //       .filter(
+                    //         (photos) =>
+                    //           (photos.folder_id = userFolderIds[folderShown])
+                    //       )
+                    //       .map((photo) => (
+                            photos.sort(sortPhotos).map((photo) => (
                             <GridItem key={photo.id}>
                               <div
                                 className={
