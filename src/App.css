@@ -56,11 +56,6 @@ button {
   background-color: gainsboro;
 }
 
-.button-flex {
-  display:flex;
-  justify-content: space-between;
-}
-
 .side-bar-add-button {
   background-color: coral;
   border: none;
@@ -157,13 +152,13 @@ a {
   font-family: Helvetica, sans-serif;
   width: 240px;
 }
-aside:nth-child(1) input {
+/* aside:nth-child(1) input {
   font-size: 2rem;
       text-align: left;
       font-family: Helvetica, sans-serif;
       width: 240px;
       color: #757575;
-  }
+  } */
 
 input name-form {
   font-size: 3.5rem;

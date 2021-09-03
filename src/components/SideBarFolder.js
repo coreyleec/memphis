@@ -1,5 +1,8 @@
 import React from 'react'
+import { Component } from 'react';
 import { useState, useEffect } from 'react'
+import styled from "styled-components";
+
 
 const SideBarFolder = (props) => {
 // ADD FOLDER STATE TOGGLE
@@ -14,24 +17,24 @@ const changeFolder = (folderName) => {setFolderName(folderName)}
                     <div className="add-item" >
                         <p>folders</p>
             {props.edit && 
-                        <button className="side-bar-add-button" onClick={() => {props.setNewFolder(!props.newFolder)}} >+</button>}
+                        <button className="side-bar-add-button" onClick={() => {setNewFolder(!newFolder)}} >+</button>}
                     </div>
 {/* NEW FOLDER */}
-            { props.newFolder && props.edit && 
+            { newFolder && props.edit && 
                         <form onSubmit={(e) => props.addFolder(e, props.folderName)}> 
-                        <input type="text" placeholder="folder name" 
-                        onChange={(e) => props.setFolderName(e.target.value)}></input> </form>}
+                        <StyledInput type="text" placeholder="folder name" 
+                        onChange={(e) => props.setFolderName(e.target.value)}></StyledInput> </form>}
 {/* EDIT FOLDER NAME */}
             {props.userFolders != null && props.edit 
                     ? props.userFolders.map(folder =>
                         <form folder={folder} key={folder.id} 
                             onSubmit={(e) => props.updateFolder(e, props.folderName, folder)}>
-                                <input type="text" 
+                                <StyledInput type="text" 
                                 defaultValue={folder.name} 
                                 className="folder-form" 
                                 // value={folder.name}
                                 onChange={(e) => props.changeFolder(e.target.value)}
-                                ></input>
+                                ></StyledInput>
                         </form>)
                     : props.currentUser && props.userFolders && props.userFolders.map(folder => <p onClick={(e) => props.chooseFolder(folder.id)} folder={folder} key={folder.id}>{folder.name}</p>)
                         }
@@ -41,3 +44,10 @@ const changeFolder = (folderName) => {setFolderName(folderName)}
 
 export default SideBarFolder
 
+const StyledInput = styled.input`
+font-size: 2rem;
+      text-align: left;
+      font-family: Helvetica, sans-serif;
+      width: 240px;
+      color: #757575;
+`
