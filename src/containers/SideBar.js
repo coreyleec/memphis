@@ -5,7 +5,6 @@ import SideBarLinks from '../components/SideBarLinks'
 import AboutMe from '../components/AboutMe'
 import styled from "styled-components";
 
-
 const SideBar = (props) => {
     // console.log(props.folderNames && props.folderNames)
     
@@ -14,35 +13,108 @@ const SideBar = (props) => {
     const toggleSideBar = () => {
         setBar(!sideBar) 
         console.log("betty")}
- 
+    // const mouseToggle = (e) => {
+    //     console.log(e)
+    //     // sideBar === true && e === null && setBar(!sideBar)
+    // }
     const logout = () => {
         localStorage.clear()
         window.location.reload(false)
     }
+    const [aboutMeToggle, setAboutMeToggle] = useState(false)
+    const toggleAboutMe = () => {
+        setAboutMeToggle(!aboutMeToggle)
+    }
     
+
 // SIDEBAR BUTTON TRANSITION
-    const [ButtonState, setButtonState] = useState(false)
+    const [buttonState, setButtonState] = useState(false)
 
 
+    
+// ADD FOLDER STATE TOGGLE
+const [newFolder, setNewFolder] = useState(false)
+const newFolderToggle = () => {setNewFolder(!newFolder)}
+const [folderName, setFolderName] = useState("")
+const changeFolder = (folderName) => {setFolderName(folderName)}
 
-console.log(props.userLinks)
+// ADD LINK STATE TOGGLE
+const [newLink, setNewLink] = useState(false)
+const newLinkToggle = () => {setNewLink(!newLink)}
+const [linkName, setLinkName] = useState("")
+const changeLinkName = (linkName) => {setLinkName(linkName)}
+const [linkUrl, setLinkUrl] = useState()
+
+// ABOUT ME
+const [userAboutMe, setUserAboutMe] = useState("") 
+const changeAboutMe = (newAboutMe) => {setUserAboutMe(newAboutMe)}
+
+// console.log(props.userLinks)
     return (
         <aside  
         // onMouseOut={(e) => mouseToggle(e.target)}
         >
-                {/* <Button onClick={(() => toggleSideBar())} className="closeSidebar">x</Button> */}
+                {/* <button onClick={(() => toggleSideBar())} className="closeSidebar">x</button> */}
                 <div className={sideBar ? "slide-button-right" : "slide-button-left" } >
                 <button  onClick={(() => toggleSideBar())} >{sideBar ? "x" : "open sidebar"}</button>
                 </div>
             <div className={sideBar ? "side-bar-open" : "side-bar-closed"} >    
 
-
-            
-                    <AboutMe {...props} />
-                    <SideBarFolder {...props} />
-                    <SideBarLinks {...props}/>
+<AboutMe {...props} />
+<SideBarFolder {...props} />
+{/* LINK FORM TOGGLE */}
+                        <div className="add-item" >
+                            <p className="add-item-p" >links</p>
+                    {props.edit && 
+                            <button className="side-bar-add-button" onClick={() => {setNewLink(!newLink)}} >+</button>}
+                        </div>
+{/* NEW LINK FORM */}
+                { newLink && props.edit && 
+                <form 
+                type="submit" 
+                onSubmit={(e) => props.addLink(e, linkName, linkUrl)}> 
+                        <input type="text" placeholder="enter link name" 
+                        onChange={(e) => setLinkName(e.target.value)}></input> 
+                        <input type="text" placeholder="enter link url" 
+                        onChange={(e) => setLinkUrl(e.target.value)}></input> 
+                        <input type="submit" value="submit" style={{ zIndex: 0}}></input>
+                </form>
+                }
+{/* EDIT LINK */}
+                {props.userLinks != undefined && props.userLinks != null && props.edit
+                    ? props.userLinks.map(link => 
+                    <form link={link} key={link.id}                             
+                            onSubmit={(e) => props.updatelink(e, linkName, linkUrl)}>
+{/* LINK NAME INPUT*/}
+                            <input type="text" defaultValue={link.name} 
+                            // className="sidebar-form" 
+                            // value={link.name}
+                            onChange={(e) => changeLinkName(e.target.value)}
+                            ></input>
+{/* LINK URL INPUT */}
+                            <input type="text" defaultValue={link.url} 
+                            // className="sidebar-form" 
+                            // value={link.url}
+                            onChange={(e) => {setLinkUrl(e.target.value)}}
+                            ></input>
+                    </form>)
+                    :  <div className="link-cont">
+                        {props.userLinks.map(link =>
+                        <a href={link.url}> {link.name} </a>)}
+                        </div>
+                        // <a href="https://example.com/faq.html"> FAQ </a>
+                        // <p onClick={(e) => props.clickLink(link.id)} link={link} key={link.id}>{link.name}</p>
+                        }
                  
-               
+                {/* {props.userLinks != null && 
+                    props.edit
+                    ? props.userLinks.map((link) => <form link={link} key={link.id} onSubmit={(e) => props.updatelink(e, linkName, link)}>
+                       <input  type="text" defaultValue={link.name} className="link-form" 
+                    //    value={link.name}
+                            onChange={(e) => changeLinkName(e.target.value)}
+                        ></input>
+                    </form>)
+                    : props.currentUser && props.userLinks.map(link => <a href={link.url} link={link} key={link.id}>{link.name}</a>)}  */}
 
                     
              
@@ -57,11 +129,10 @@ console.log(props.userLinks)
                 <br></br>
                 <br></br>
                 <p>Welcome :)</p>
-
-                {props.currentUser == "" 
-                ? <Button onClick={() => props.useTemplate(setBar(!sideBar))} >use template</Button> 
-                : <Button onClick={() => logout()} >log out</Button>}
-
+                <div classname="button-flex" >
+                <button onClick={() => logout()} >log out</button>
+                <button onClick={() => props.useTemplate(setBar(!sideBar))} >use template</button>
+                </div>
                 {/* <p>image board is a visual tool for image curation, as well as a digital portfolio template</p> */}
             </div>
             
@@ -70,14 +141,6 @@ console.log(props.userLinks)
 }
 
 export default SideBar
-
-
-
-const Button = styled.button`     
-    align-items: flex-end;
-
-`
-
 
 // const [userFolders, setUserFolders] = useState({...props.userFolders})
     // useEffect(() => {

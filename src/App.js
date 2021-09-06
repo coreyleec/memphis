@@ -238,6 +238,37 @@ const App = () => {
     setLinkNames(linkName);
     setLink(linkUrl);
   };
+
+
+  const addLink = (e, linkName, linkUrl) => {
+    e.preventDefault();
+    console.log("hello");
+    console.log(e)
+    console.log(linkName)
+    console.log(linkUrl)
+
+    fetch(`http://localhost:3000/api/v1/links/`, {
+        method: 'POST'
+        , headers: {
+            Authorization: `Bearer ${localStorage.token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: linkName,
+          details: "add a description" ,
+          url: linkUrl ,
+          user_id: currentUser.id
+      })
+    })
+    .then(res => res.json())
+    .then(linkObj => {
+      console.log(linkObj)
+      setUserLinks([...userLinks, linkObj])
+      }
+    )
+  };
+  // console.log(userLinks)
+
   const updateLink = (e, linkName, link) => {
     e.preventDefault();
     console.log(e);
@@ -273,34 +304,6 @@ const App = () => {
     console.log("hello");
   };
 
-  const addLink = (e, linkName, linkUrl) => {
-    e.preventDefault();
-    console.log("hello");
-    // console.log(e)
-    // console.log(linkName)
-    // console.log(linkUrl)
-
-    // fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/links`, {
-    //     method: 'POST'
-    //     , headers: {
-    //         Authorization: `Bearer ${localStorage.token}`,
-    //         "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({
-    //       name: linkName,
-    //       details: "add a description" ,
-    //       link: linkUrl ,
-    //       // user_id: currentUser.id
-    //   })
-    // })
-    // .then(res => res.json())
-    // .then(linkObj => {
-    //   console.log(linkObj)
-    //   setUserLinks([...userLinks, linkObj])
-    //   }
-    // )
-  };
-  // console.log(userLinks)
 
   // EDIT USER INFO
   const [userEmail, setUserEmail] = useState("");
@@ -643,13 +646,13 @@ const App = () => {
                     {
                     folderToggle != true && userFolderIds != null
                       ? photos != null &&
-                    //     photos
-                    //       .filter(
-                    //         (photos) =>
-                    //           (photos.folder_id = userFolderIds[folderShown])
-                    //       )
-                    //       .map((photo) => (
-                            photos.sort(sortPhotos).map((photo) => (
+                        photos
+                          .filter(
+                            (photos) =>
+                              (photos.folder_id = userFolderIds[folderShown])
+                          )
+                          .map((photo) => (
+                            // photos.sort(sortPhotos).map((photo) => (
                             <GridItem key={photo.id}>
                               <div
                                 className={

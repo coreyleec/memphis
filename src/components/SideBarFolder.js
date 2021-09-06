@@ -23,17 +23,17 @@ const changeFolder = (folderName) => {setFolderName(folderName)}
             { newFolder && props.edit && 
                         <form onSubmit={(e) => props.addFolder(e, props.folderName)}> 
                         <StyledInput type="text" placeholder="folder name" 
-                        onChange={(e) => props.setFolderName(e.target.value)}></StyledInput> </form>}
+                        onChange={(e) => setFolderName(e.target.value)}></StyledInput> </form>}
 {/* EDIT FOLDER NAME */}
             {props.userFolders != null && props.edit 
                     ? props.userFolders.map(folder =>
                         <form folder={folder} key={folder.id} 
-                            onSubmit={(e) => props.updateFolder(e, props.folderName, folder)}>
+                            onSubmit={(e) => props.updateFolder(e, folderName, folder)}>
                                 <StyledInput type="text" 
                                 defaultValue={folder.name} 
                                 className="folder-form" 
                                 // value={folder.name}
-                                onChange={(e) => props.changeFolder(e.target.value)}
+                                onChange={(e) => setFolderName(e.target.value)}
                                 ></StyledInput>
                         </form>)
                     : props.currentUser && props.userFolders && props.userFolders.map(folder => <p onClick={(e) => props.chooseFolder(folder.id)} folder={folder} key={folder.id}>{folder.name}</p>)

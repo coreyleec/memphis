@@ -33,7 +33,7 @@ const SideBarLinks = (props) => {
       {/* NEW LINK FORM */}
       {newLink && props.edit && (
         <form
-          type="submit"
+        //   type="submit"
           onSubmit={(e) => props.addLink(e, linkName, linkUrl)}
         >
           <StyledInput
@@ -46,6 +46,8 @@ const SideBarLinks = (props) => {
             placeholder="enter link url"
             onChange={(e) => changeLinkName(e.target.value)}
           ></StyledInput>
+          <input type="submit" value="submit" style={{ zIndex: 0}}></input>
+          <button type="submit" ></button>
         </form>
       )}
       {/* EDIT LINK */}
