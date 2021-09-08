@@ -23,6 +23,7 @@ import SideBar from "./containers/SideBar";
 import AsideRight from "./containers/AsideRight";
 import UserLoginSignup from "./containers/UserLoginSignup";
 import Test from "./components/Test";
+import styled from "styled-components";
 
 const App = () => {
   // OPEN LOGIN
@@ -269,10 +270,10 @@ const App = () => {
   };
   // console.log(userLinks)
 
-  const updateLink = (e, linkName, link) => {
+  const updateLink = (e, linkName, linkUrl, link) => {
     e.preventDefault();
     console.log(e);
-    console.log(link);
+    console.log(linkUrl);
     console.log(link.id);
     console.log(linkName);
     fetch(`http://localhost:3000/api/v1/links/${link.id}`, {
@@ -284,7 +285,7 @@ const App = () => {
       body: JSON.stringify({
         name: linkName,
         // details: linkDetais,
-        // link: ink,
+        url: linkUrl,
         // user_id: currentUser.id
       }),
     })
@@ -299,6 +300,11 @@ const App = () => {
         );
       });
   };
+
+  // setUserFolders(
+  //   userFolders.map((folder) => {
+  //     if (folder.id === folderObj.id) return folderObj;
+  //     else return folder;
 
   const sayHello = () => {
     console.log("hello");

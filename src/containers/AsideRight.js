@@ -1,4 +1,5 @@
 import { React, useEffect, useState} from 'react';
+import styled from "styled-components";
 // import "..components/ToggleSwitch.css"
 
 // import Switch from "react-switch"
@@ -14,7 +15,7 @@ const AsideRight = (props) => {
     return (
         <aside>
             {props.currentUser.id != null && 
-            <div>
+            <Sticky>
             <label className="switch-container">
              <label className="toggle-switch">
             <input type="checkbox" checked={props.edit}
@@ -23,8 +24,8 @@ const AsideRight = (props) => {
             </label>
             <p>edit</p>
             </label>
-            <button onClick={props.reorderSubmit()} >submit reorder</button>
-            </div>
+            {/* <button onClick={props.reorderSubmit()} >submit reorder</button> */}
+            </Sticky>
             }
         </aside>
     )
@@ -33,3 +34,8 @@ const AsideRight = (props) => {
 
     }
 export default AsideRight
+
+const Sticky = styled.div`
+position: sticky;
+  top: 0;
+`

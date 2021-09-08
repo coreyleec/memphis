@@ -75,7 +75,6 @@ export default SideBar
 
 const Button = styled.button`     
     align-items: flex-end;
-
 `
 
 

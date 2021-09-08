@@ -36,7 +36,7 @@ const changeFolder = (folderName) => {setFolderName(folderName)}
                                 onChange={(e) => setFolderName(e.target.value)}
                                 ></StyledInput>
                         </form>)
-                    : props.currentUser && props.userFolders && props.userFolders.map(folder => <p onClick={(e) => props.chooseFolder(folder.id)} folder={folder} key={folder.id}>{folder.name}</p>)
+                    : props.currentUser && props.userFolders && props.userFolders.map(folder => <StyledP onClick={(e) => props.chooseFolder(folder.id)} key={folder.id}>{folder.name}</StyledP>)
                         }
         </div>
     )
@@ -46,8 +46,17 @@ export default SideBarFolder
 
 const StyledInput = styled.input`
 font-size: 2rem;
+padding: 0px;
+line-height: 1.5;
       text-align: left;
-      font-family: Helvetica, sans-serif;
       width: 240px;
       color: #757575;
+`
+const StyledP = styled.p`
+    font-size: 2rem;
+      text-align: left;
+      width: 240px;
+      color: black;
+      margin-bottom: 0px;
+      cursor: pointer;
 `

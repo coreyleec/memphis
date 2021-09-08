@@ -1,58 +1,9 @@
-.Test {
-  font-family: 'Arial';
-  
-}
-
-/* .item {
-  width: 100px;
-  height: 100px;
-  margin: 10px;
-  background-color: lightblue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2em;
-  font-weight: bold;
-  color: white;
-} */
-
-sidebar-input::placeholder {
-  color: #757575
-
-}
-
-.name-form {
-  overflow: hidden;
-  text-align: right; 
-  font-size: 2.5rem;
-  float: right;
-  margin-top: .001rem;
-  /* margin-bottom: .3rem; */
-  font-weight: 500;
-  line-height: 1;
+* {
   font-family: Helvetica, sans-serif;
-  /* padding-right: 20px; */
-  box-sizing: border-box;
-  display: block;
-  /* font-size: 2em; */
-  /* margin-block-start: 0.67em; */
-
-
-  color: #212529;
-
-  
-  
-  margin-block-end: 1em;
-  
-  margin-inline-end: 18px;
-  
 }
+
 
 button {
-  /* border-width: 0px; */
-  /* padding:2px; */
-  /* margin: 8px;
-  padding: 5px; */
   background-color: gainsboro;
 }
 
@@ -60,58 +11,44 @@ button {
   background-color: coral;
   border: none;
   font-size: 2rem;
+  line-height: 0px;
 }
 
-/* border-color: 0; */
-/* button, input, select, textarea {
-  margin: 8px;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-} */
-
-/* * {
-  margin: 0;
-  padding:0;
-  border: 0;
-  box-sizing: border-box;
-} */
 
 
 .slide-button-left {
-  left: .5%;
+  margin-top: 5px;
+  left: 0%;
   transition: all 1s;
   position: absolute;
-}
-.slide-button-right {
-  left: 15%;
-  transition: all 1s;
-position: absolute;
+  z-index: 1;
 }
 
-.side-bar-button {
-  height:40px;
-  }
-.side-bar-button {
-padding-right: 5px;
+.slide-button-right {
+  margin-top: 5px;
+  left: 92.5%;
+  transition: all 1s;
+  z-index: 1;
+  position: absolute;
 }
+
 .side-bar-closed {
-  left: -100%;
-  transition: all 2s;
+  width: 50%;
+  left: -51%;
+  transition: all 1s;
   position: absolute;
-  /* margin-top: 3rem; */
-  } 
-  .break {
-    margin-top: 5rem;
   }
+
   .side-bar-open {
-  
-  left: 2;
+  width: 100%;
   position: absolute;
-  transition: all 2s;
-  /* left: -0%;
-  transition: all 2s; */
+  left: -0%;
+  transition: all 1s;
   }
+
+.break {
+  margin-top: 5rem;
+}
 
 .about-me {
   font-size: 1rem;
@@ -120,16 +57,8 @@ padding-right: 5px;
 .add-item {
   display:flex;
   justify-content: space-between;
-  
+  max-height: 47.78;
 }
-  /* .side-bar-open {
-    align-content: flex-end;
-    animation-direction: normal; 
-  }
-  .side-bar-close {
-    align-content: flex-end;
-    animation-direction: reverse; 
-  } */
 
 
   *:focus {
@@ -149,29 +78,19 @@ input {
 a {
   font-size: 2rem;
   text-align: left;
-  font-family: Helvetica, sans-serif;
   width: 240px;
 }
-/* aside:nth-child(1) input {
-  font-size: 2rem;
-      text-align: left;
-      font-family: Helvetica, sans-serif;
-      width: 240px;
-      color: #757575;
-  } */
 
 input name-form {
   font-size: 3.5rem;
 }
-input, select, textarea{
-  /* color: #212529; */
-  /* margin-bottom: 1rem; */
+
+textarea {
+  margin: 0;
   display: block;
-  /* margin-block-start: 1em; */
-  /* margin-block-end: 1em; */
-  /* margin-inline-start: 0px; */
-  /* margin-inline-end: 0px;  */
+  line-height: none;
 }
+
 img{border:0;}
   body {background-color: coral;}
   img {
@@ -179,21 +98,15 @@ img{border:0;}
     align-items: center;
   }
   
-  .thumbnail{
-    overflow: hidden;
-    height: 157px;
-  }
   p {
     font-size: 2rem;    
     text-align: left;
-    font-family: Helvetica, sans-serif;
-    /* width: 70px; */
+    color: black;
   }
 
   h1 {
     font-size:3.5rem;
     text-align: right;
-    font-family: Helvetica, sans-serif;
     padding-right: 20px;
   }
 
@@ -226,9 +139,11 @@ main {
 
 aside:nth-child(1) {
   /* background-color: lightgray; */
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
+  
+  /* padding-top: 5px; */
+  padding-inline: 5px;
+  /* padding-left: 5px;
+  padding-right: 5px; */
   grid-area: leftbar;
   background-color: coral;
 }
@@ -370,10 +285,12 @@ li {
     
     font-size: 2rem;
     text-align: left;
-    font-family: Helvetica, sans-serif;
     width: 170px;
     color: #212529;
   } */
+  input, select, textarea{
+    display: block;
+  }
 
   .box {
     box-shadow:
@@ -458,14 +375,13 @@ li {
     border:none;
     background-color: coral;
   }
-  /* modalBtn-two { 
   
-  } */
 .about-me-cont {
-  width:15rem;
+  /* width:100%; */
   display: flex;
   flex-wrap: wrap;
-}button
+}
+
 
 div.modal-header {
 background-color: coral;
@@ -584,3 +500,5 @@ background-color: #f3f3f3;
 cursor: pointer;
 margin-bottom: 15px;
 } */
+
+

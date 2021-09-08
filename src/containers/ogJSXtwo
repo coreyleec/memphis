@@ -180,3 +180,21 @@
 //   </GridDropZone>
 //   {/* {placeholder} */}
 // </GridContextProvider>
+
+
+
+.side-bar-closed {
+  left: -100%;
+  transition: all 2s;
+  position: absolute;
+  width: 240px;
+  /* margin-top: 3rem; */
+  } 
+  
+  .side-bar-open {
+  /* left: 2; */
+  position: absolute;
+  /* transition: all 2s; */
+  left: -0%;
+  transition: all 2s;
+  }

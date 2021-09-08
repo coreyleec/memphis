@@ -15,11 +15,11 @@ const SideBarLinks = (props) => {
   const [linkUrl, setLinkUrl] = useState();
 
   return (
-    <div>
+    <>
       {/* LINK FORM TOGGLE */}
-        <div className="add-item">
-          <p className="add-item-p">links</p>
-      {props.edit && (
+      <div className="add-item">
+        <p className="add-item-p">links</p>
+        {props.edit && (
           <button
             className="side-bar-add-button"
             onClick={() => {
@@ -28,70 +28,72 @@ const SideBarLinks = (props) => {
           >
             +
           </button>
-      )}
-        </div>
+        )}
+      </div>
       {/* NEW LINK FORM */}
       {newLink && props.edit && (
         <form
-        //   type="submit"
+          type="submit"
           onSubmit={(e) => props.addLink(e, linkName, linkUrl)}
         >
           <StyledInput
             type="text"
             placeholder="enter link name"
-            onChange={(e) => changeLinkName(e.target.value)}
+            onChange={(e) => setLinkName(e.target.value)}
           ></StyledInput>
           <StyledInput
             type="text"
             placeholder="enter link url"
-            onChange={(e) => changeLinkName(e.target.value)}
+            onChange={(e) => setLinkUrl(e.target.value)}
           ></StyledInput>
-          <input type="submit" value="submit" style={{ zIndex: 0}}></input>
-          <button type="submit" ></button>
+          <StyledInput
+            type="submit"
+            value="submit"
+            style={{ display: "none" }}
+          ></StyledInput>
         </form>
       )}
       {/* EDIT LINK */}
-      {
-        props.userLinks != undefined &&
-        props.userLinks != null &&
-        props.edit ? (
-          props.userLinks.map((link) => (
-            <form
-              link={link}
-              key={link.id}
-              onSubmit={(e) => props.updatelink(e, linkName, linkUrl)}
-            >
-              {/* LINK NAME INPUT*/}
-              <StyledInput
-                type="text"
-                defaultValue={link.name}
-                // className="sidebar-form"
-                // value={link.name}
-                onChange={(e) => changeLinkName(e.target.value)}
-              ></StyledInput>
-              {/* LINK URL INPUT */}
-              <StyledInput
-                type="text"
-                defaultValue={link.url}
-                // className="sidebar-form"
-                // value={link.url}
-                onChange={(e) => {
-                  setLinkUrl(e.target.value);
-                }}
-              ></StyledInput>
-            </form>
-          ))
-        ) : (
-          <div className="link-cont">
-            {props.userLinks.map((link) => (
-              <a href={link.url}> {link.name} </a>
-            ))}
-          </div>
-        )
-        // <a href="https://example.com/faq.html"> FAQ </a>
-        // <p onClick={(e) => props.clickLink(link.id)} link={link} key={link.id}>{link.name}</p>
-      }
-    </div>
+      {props.userLinks != undefined && props.userLinks != null && props.edit ? (
+        props.userLinks.map((link) => (
+          <form
+            link={link}
+            key={link.id}
+            onSubmit={(e) => props.updateLink(e, linkName, linkUrl, link)}
+          >
+            {/* LINK NAME INPUT*/}
+            <StyledInput
+              type="text"
+              defaultValue={link.name}
+              // className="sidebar-form"
+              // value={link.name}
+              onChange={(e) => changeLinkName(e.target.value)}
+            ></StyledInput>
+            {/* LINK URL INPUT */}
+            <StyledUrl
+              type="text"
+              defaultValue={link.url}
+              // className="sidebar-form"
+              // value={link.url}
+              onChange={(e) => {
+                setLinkUrl(e.target.value);
+              }}
+            ></StyledUrl>
+            <StyledInput
+              type="submit"
+              value="submit"
+              style={{ display: "none" }}
+            ></StyledInput>
+          </form>
+        ))
+      ) : (
+        <div className="link-cont">
+          {props.userLinks.map((link) => (
+            <a href={link.url}> {link.name} </a>
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
@@ -99,8 +101,21 @@ export default SideBarLinks;
 
 const StyledInput = styled.input`
   font-size: 2rem;
+  padding: 0px;
   text-align: left;
-  font-family: Helvetica, sans-serif;
-  width: 240px;
+  width: 75%;
   color: #757575;
+`;
+
+const StyledUrl = styled.textarea`
+  background-color: inherit;
+  resize: none;
+  padding: 0;
+  line-height: 1.5;
+  border-width: 0;
+  font-size: 1rem;
+  text-align: left;
+  width: 95%;
+  color: #757575;
+  
 `;

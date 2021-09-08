@@ -13,9 +13,7 @@ const AboutMe = (props) => {
   };
   return (
     <div>
-      {/* ABOUT ME */}
       <div className="break"></div>
-      <div className="about-me-cont">
         {props.userAboutMe != null && props.edit ? (
           <form
             details={props.userAboutMe}
@@ -23,39 +21,45 @@ const AboutMe = (props) => {
             onSubmit={(e) => props.updateUserAboutMe(e, userAboutMe)}
           >
             <StyledInput
-              type="text"
+              type="textarea"
+              rows="3"
               className="sidebar-StyledInput"
               defaultValue={props.userAboutMe}
-              //   StyledInputStyle={{ color: "#212529" }}
               placeholder="add a description"
               onChange={(e) => changeAboutMe(e.target.value)}
             ></StyledInput>
           </form>
         ) : (
-          <p
-            style={{
-              cursor: "pointer",
-              fontSize: "1rem",
-              display: "flex",
-              flexStyle: "wrap",
-            }}
-            onClick={() => setAboutMeToggle()}
-          >
+          <AboutMeP onClick={() => setAboutMeToggle()}>
             {props.userAboutMe}
-          </p>
+          </AboutMeP>
         )}
       </div>
-    </div>
+    // </div>
   );
 };
 
 export default AboutMe;
 
-const StyledInput = styled.input`
+const StyledInput = styled.textarea`
+  background-color: inherit;
+  resize: none;
+  padding: 0;
+  line-height: 1.5;
+  border-width: 0;
+  margin-top: 0;
   font-size: 1rem;
+  height: fit-content;
   margin-bottom: 1rem;
   text-align: left;
   font-family: Helvetica, sans-serif;
-  width: 240px;
+  width: 100%;
   color: #757575;
 `;
+
+const AboutMeP = styled.p`
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    color: black;
+    `

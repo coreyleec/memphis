@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import styled from "styled-components";
 
 const Header = (props) => {
 
@@ -15,13 +16,12 @@ const Header = (props) => {
                     name={props.currentUser.name} 
                     key={props.currentUser.id} 
                     onSubmit={(e) => props.nameSubmit(e, newUserName, props.currentUser.id)}>
-                        <input  
+                        <NameInput  
                         type="text" 
                         defaultValue={props.currentUser.name} 
-                        className="name-form" 
                             // value={currentUser.name}
                             onChange={(e) => changeName(e.target.value)}
-                        ></input>
+                        ></NameInput>
                 </form>
                 : <h1 >{props.currentUser ? props.userName : "Image Board"}</h1> 
                     }
@@ -31,3 +31,16 @@ const Header = (props) => {
 }
 
 export default Header
+const NameInput = styled.input`
+  text-align: right; 
+  font-size: 2.5rem;
+  float: right;
+  margin-top: .001rem;
+  font-weight: 500;
+  line-height: 1;
+  box-sizing: border-box;
+  display: block;
+  color: black;
+  margin-block-end: 1em;
+  margin-inline-end: 18px;
+`
