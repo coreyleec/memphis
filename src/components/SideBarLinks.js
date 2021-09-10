@@ -14,6 +14,22 @@ const SideBarLinks = (props) => {
   };
   const [linkUrl, setLinkUrl] = useState();
 
+
+  const submitLink = (e) => {
+    if (e.key == 'Enter' && e.shiftKey == false) {props.addLink(e, linkName, linkUrl)}
+    
+  }
+
+  const submitUpdatedLink = (e, linkName, linkUrl, link) => {
+    if (e.key == 'Enter' && e.shiftKey == false) 
+    {props.updateLink(e, linkName, linkUrl, link)}
+    
+  }
+const submitLinkCloseForm = (e) => {
+    props.addLink(e, linkName, linkUrl)
+    setNewLink(!newLink)
+}
+
   return (
     <>
       {/* LINK FORM TOGGLE */}
@@ -25,51 +41,56 @@ const SideBarLinks = (props) => {
             onClick={() => {
               setNewLink(!newLink);
             }}
-          >
-            +
-          </button>
+          >+</button>
         )}
       </div>
       {/* NEW LINK FORM */}
       {newLink && props.edit && (
         <form
           type="submit"
-          onSubmit={(e) => props.addLink(e, linkName, linkUrl)}
+          onSubmit={(e) => submitLinkCloseForm(e)}
+        //   onKeyDown={(e) => submitLink(e)}
         >
           <StyledInput
             type="text"
-            placeholder="enter link name"
+            placeholder="link name"
             onChange={(e) => setLinkName(e.target.value)}
           ></StyledInput>
           <StyledInput
             type="text"
-            placeholder="enter link url"
+            placeholder="link url"
             onChange={(e) => setLinkUrl(e.target.value)}
           ></StyledInput>
-          <StyledInput
+          <input
             type="submit"
             value="submit"
             style={{ display: "none" }}
-          ></StyledInput>
+          ></input>
         </form>
       )}
       {/* EDIT LINK */}
       {props.userLinks != undefined && props.userLinks != null && props.edit ? (
         props.userLinks.map((link) => (
-          <form
+          <form 
+          
             link={link}
             key={link.id}
-            onSubmit={(e) => props.updateLink(e, linkName, linkUrl, link)}
+            onKeyDown={(e) => submitUpdatedLink(e, linkName, linkUrl, link)}
+            // onSubmit={(e) => props.updateLink(e, linkName, linkUrl)}
           >
-            {/* LINK NAME INPUT*/}
+              <div className="subtract-item">
+{/* LINK NAME INPUT*/}
             <StyledInput
               type="text"
               defaultValue={link.name}
-              // className="sidebar-form"
-              // value={link.name}
               onChange={(e) => changeLinkName(e.target.value)}
             ></StyledInput>
-            {/* LINK URL INPUT */}
+
+            <SubtractButton 
+            onCLick={(e) => props.deleteFolder(e, link.id)} >-</SubtractButton>
+
+            </div>
+{/* LINK URL INPUT */}
             <StyledUrl
               type="text"
               defaultValue={link.url}
@@ -79,11 +100,6 @@ const SideBarLinks = (props) => {
                 setLinkUrl(e.target.value);
               }}
             ></StyledUrl>
-            <StyledInput
-              type="submit"
-              value="submit"
-              style={{ display: "none" }}
-            ></StyledInput>
           </form>
         ))
       ) : (
@@ -99,6 +115,15 @@ const SideBarLinks = (props) => {
 
 export default SideBarLinks;
 
+const SubtractButton = styled.button`
+background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #757575;
+  line-height: 0px;
+  padding: 0;
+  transform: scale(2, 1);
+`
 const StyledInput = styled.input`
   font-size: 2rem;
   padding: 0px;
@@ -110,12 +135,13 @@ const StyledInput = styled.input`
 const StyledUrl = styled.textarea`
   background-color: inherit;
   resize: none;
+  overflow: hidden;
   padding: 0;
   line-height: 1.5;
   border-width: 0;
   font-size: 1rem;
   text-align: left;
-  width: 95%;
+  width: 100%;
   color: #757575;
   
 `;

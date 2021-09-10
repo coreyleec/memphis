@@ -11,11 +11,16 @@ const AboutMe = (props) => {
   const changeAboutMe = (newAboutMe) => {
     setUserAboutMe(newAboutMe);
   };
+const submitAboutMe = (e) => {
+    if (e.key == 'Enter' && e.shiftKey == false) {props.updateUserAboutMe(e, userAboutMe)}
+}
+
   return (
     <div>
       <div className="break"></div>
         {props.userAboutMe != null && props.edit ? (
           <form
+            onKeyDown={(e) => submitAboutMe(e)}
             details={props.userAboutMe}
             key={props.currentUser.id}
             onSubmit={(e) => props.updateUserAboutMe(e, userAboutMe)}
@@ -43,6 +48,7 @@ export default AboutMe;
 
 const StyledInput = styled.textarea`
   background-color: inherit;
+  overflow: hidden;
   resize: none;
   padding: 0;
   line-height: 1.5;

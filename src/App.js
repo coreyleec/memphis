@@ -217,6 +217,34 @@ const App = () => {
         setUserFolders([...userFolders, folderObj]);
       });
   };
+
+  // deletePost = (postObj) => {
+  //   let newPosts = this.state.posts.filter((post) => post.id !== postObj.id);
+  //   fetch(`http://localhost:3000/posts/${postObj.id}`, { method: "DELETE" })
+  //     .then((resp) => resp.json())
+  //     .then(() => this.setState({ posts: newPosts }));
+  // };
+
+  const deleteFolder = (e, folderId) => {
+    e.preventDefault();
+    // console.log(e);
+    console.log(folderId)
+    // console.log(folder.id)
+
+    fetch(`http://localhost:3000/api/v1/folders/${folderId}/`, {
+      method: "DELETE"
+      // ,
+      // headers: {
+      //   Authorization: `Bearer ${localStorage.token}`,
+      //   "Content-Type": "application/json",
+      // },
+    })
+      .then((res) => res.json())
+      .then((folderObj) => {
+        console.log(folderObj);
+        setUserFolders(userFolders);
+      });
+  };
   // console.log(userFolders)
 
   // LINKS //
@@ -609,6 +637,7 @@ const App = () => {
       <div className={"cont"}>
         <SideBar
           edit={edit}
+          deleteFolder={deleteFolder}
           sayHello={sayHello}
           userFolders={userFolders}
           addFolder={addFolder}

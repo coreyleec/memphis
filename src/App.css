@@ -6,9 +6,21 @@
 button {
   background-color: gainsboro;
 }
+.add-item {
+  display:flex;
+  justify-content: space-between;  
+  /* max-height: 47.78;/ */
+  /* width: max-content; */
+}
+.subtract-item {
+  display:flex;
+  justify-content: space-between;
+  margin-right: 5;
+  width: 97%;
+}
 
 .side-bar-add-button {
-  background-color: coral;
+  background-color: transparent;
   border: none;
   font-size: 2rem;
   line-height: 0px;
@@ -16,6 +28,9 @@ button {
 
 
 
+input:-internal-autofill-selected {
+  background-color:transparent !important;
+}
 .slide-button-left {
   margin-top: 5px;
   left: 0%;
@@ -26,7 +41,7 @@ button {
 
 .slide-button-right {
   margin-top: 5px;
-  left: 92.5%;
+  left: 90%;
   transition: all 1s;
   z-index: 1;
   position: absolute;
@@ -34,7 +49,7 @@ button {
 
 .side-bar-closed {
   width: 50%;
-  left: -51%;
+  left: -250%;
   transition: all 1s;
   position: absolute;
   }
@@ -54,11 +69,7 @@ button {
   font-size: 1rem;
   
 }
-.add-item {
-  display:flex;
-  justify-content: space-between;
-  max-height: 47.78;
-}
+
 
 
   *:focus {

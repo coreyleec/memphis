@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { React } from 'react'
 import { useHistory } from "react-router-dom"
+import styled from "styled-components";
 
 const UserLoginSignup = (props) => {
 
@@ -52,3 +53,9 @@ const UserLoginSignup = (props) => {
 
     }
 export default UserLoginSignup
+
+const LoginInput = styled.input`
+background-color: transparent !important;
+padding: 3px;
+margin: 2px;
+`
