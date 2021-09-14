@@ -44,7 +44,7 @@ const submitCloseForm = (e) => {
 
                                 </StyledInput>
                         <SubtractButton 
-                        onCLick={(e) => props.deleteFolder(e, folder.id)} >-</SubtractButton>
+                        onClick={(e) => props.deleteFolder(e, folder.id)} >-</SubtractButton>
                         </form>
                         </div>
 )

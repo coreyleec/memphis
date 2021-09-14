@@ -23,16 +23,16 @@ const UserLoginSignup = (props) => {
 
     return (
         <div>
-            <div classname="button-flex" >
+            <div className="button-flex" >
             <button onClick={() => signup()}>sign up</button>
-            <button onClick={() => login()} >login</button>
+            <button  onClick={() => login()} >login</button>
             </div>
         {userLogin  
         ?<form  onSubmit={props.loginSubmit}   >
             {/* <button onClick={() => setUserLogin(!userLogin)} className="closeSidebar">X</button> */}
             {/* <p>login</p> */}
-            <input type="text" placeholder="name" onChange={(e) => props.handleName(e.target.value)} />
-            <input type="password" placeholder="password" onChange={(e) => props.handlePassword(e.target.value)} />
+            <LoginInput type="text" placeholder="name" onChange={(e) => props.handleName(e.target.value)} />
+            <LoginInput type="password" placeholder="password" onChange={(e) => props.handlePassword(e.target.value)} />
             <button type="submit" >submit</button>
         </form>
         : null}
@@ -43,7 +43,7 @@ const UserLoginSignup = (props) => {
             <input type="name" placeholder="name" onChange={(e) => props.handleName(e.target.value)} />
             <input type="email" placeholder="email" onChange={(e) => props.handleEmail(e.target.value)} />
             <input type="password" placeholder="password" onChange={(e) => props.handlePassword(e.target.value)} />
-            <button type="submit" >submit</button>
+            {/* <button type="submit" >submit</button> */}
         </form>
         : null}
         </div>
@@ -55,7 +55,7 @@ const UserLoginSignup = (props) => {
 export default UserLoginSignup
 
 const LoginInput = styled.input`
-background-color: transparent !important;
+/* background-color: transparent !important; */
 padding: 3px;
-margin: 2px;
+margin: 3px;
 `

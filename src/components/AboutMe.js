@@ -17,7 +17,7 @@ const submitAboutMe = (e) => {
 
   return (
     <div>
-      <div className="break"></div>
+     
         {props.userAboutMe != null && props.edit ? (
           <form
             onKeyDown={(e) => submitAboutMe(e)}
@@ -48,12 +48,13 @@ export default AboutMe;
 
 const StyledInput = styled.textarea`
   background-color: inherit;
-  overflow: hidden;
+  overflow-y:overlay;
   resize: none;
   padding: 0;
   line-height: 1.5;
   border-width: 0;
   margin-top: 0;
+  padding-right: 1px;
   font-size: 1rem;
   height: fit-content;
   margin-bottom: 1rem;
@@ -61,6 +62,22 @@ const StyledInput = styled.textarea`
   font-family: Helvetica, sans-serif;
   width: 100%;
   color: #757575;
+
+  ::-webkit-scrollbar {
+  display: unset;
+  }
+  /* ::-webkit-scrollbar-track{
+        width: 5px;
+    } */
+  :hover{
+      display: show;
+      
+  ::-webkit-scrollbar{width: 2px;}
+    ::-webkit-scrollbar-thumb{border: 1px solid black;}
+    /* right: 10px; */
+    
+  }
+  
 `;
 
 const AboutMeP = styled.p`

@@ -53,6 +53,7 @@ const SideBar = (props) => {
   return (
     <aside>
       <Sticky>
+          
         <button
           className={sideBar ? "slide-button-right" : "slide-button-left"}
           onClick={() => toggleSideBar()}
@@ -61,6 +62,8 @@ const SideBar = (props) => {
         </button>
         <div className={sideBar ? "side-bar-open" : "side-bar-closed"}>
           {/* <div className={"sidebar-content-closed"}> */}
+          <div className="scrollable" >
+          <div className="break"></div>
             <AboutMe {...props} />
             <SideBarFolder {...props} />
             <SideBarLinks {...props} />
@@ -79,7 +82,7 @@ const SideBar = (props) => {
             )}
             {/* <p>image board is a visual tool for image curation, as well as a digital portfolio template</p> */}
           </div>
-        {/* </div> */}
+        </div>
       </Sticky>
     </aside>
   );
@@ -91,6 +94,7 @@ const Button = styled.button`
   align-items: flex-end;
 `;
 const Sticky = styled.div`
+  
   position: sticky;
   top: 0;
 `;

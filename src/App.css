@@ -1,7 +1,15 @@
 * {
   font-family: Helvetica, sans-serif;
+  
 }
 
+/* body {
+  overflow-y: auto;
+
+} */
+body::-webkit-scrollbar {
+  display: none;
+}
 
 button {
   background-color: gainsboro;
@@ -28,9 +36,17 @@ button {
 
 
 
-input:-internal-autofill-selected {
-  background-color:transparent !important;
+input:-webkit-autofill {
+  background-color: transparent !important;
+  -webkit-box-shadow: 0 0 0 50px gainsboro inset;
 }
+
+.button-flex {
+  width: 20%;
+    display:flex;
+    justify-content: space-between;  
+}
+
 .slide-button-left {
   margin-top: 5px;
   left: 0%;
@@ -53,9 +69,17 @@ input:-internal-autofill-selected {
   transition: all 1s;
   position: absolute;
   }
+  .scrollable {
+    
+    height: 700px;
+    overflow-y: scroll;
+  }
+  .scrollable::-webkit-scrollbar {
+    width: 3px;
+  }
 
   .side-bar-open {
-  width: 100%;
+    width: 100%;
   position: absolute;
   left: -0%;
   transition: all 1s;
@@ -63,6 +87,7 @@ input:-internal-autofill-selected {
 
 .break {
   margin-top: 5rem;
+  height: 1.5fr;
 }
 
 .about-me {
@@ -130,7 +155,9 @@ img{border:0;}
   "leftbar header header"
   "leftbar main rightbar"
   "leftbar footer rightbar";
-
+}
+.cont::-webkit-scrollbar {
+  display: none;
 }
 
 header {

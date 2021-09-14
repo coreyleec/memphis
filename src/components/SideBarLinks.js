@@ -135,13 +135,21 @@ const StyledInput = styled.input`
 const StyledUrl = styled.textarea`
   background-color: inherit;
   resize: none;
-  overflow: hidden;
+  overflow: overlay;
   padding: 0;
+  padding-right: 1px;
   line-height: 1.5;
   border-width: 0;
   font-size: 1rem;
   text-align: left;
   width: 100%;
   color: #757575;
-  
+  ::-webkit-scrollbar {
+  display: unset;
+  }
+  :hover{
+      display: show;
+  ::-webkit-scrollbar{width: 2px;}
+    ::-webkit-scrollbar-thumb{border: 1px solid black;}
+  }
 `;
