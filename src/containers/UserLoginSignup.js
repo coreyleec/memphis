@@ -56,6 +56,6 @@ export default UserLoginSignup
 
 const LoginInput = styled.input`
 /* background-color: transparent !important; */
-padding: 4px;
+padding: 5px;
 margin: 0px;
 `

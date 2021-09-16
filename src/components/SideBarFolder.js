@@ -48,7 +48,7 @@ const submitCloseForm = (e) => {
 
                                 </StyledInput>
                         </form>
-                        <SubtractButton folder={folder} key={folder.id} 
+                        <SubtractButton 
                         onClick={() => props.deleteFolder(folder)} >-</SubtractButton>
                         </div>
 )
@@ -76,13 +76,13 @@ padding: 0px;
 float: left;
 line-height: 1.5;
       text-align: left;
-      width: 155px;
+      width: 85%;
       color: #757575;
 `
 const StyledP = styled.p`
     font-size: 2rem;
       text-align: left;
-      width: 240px;
+      width: 85%;
       color: black;
       margin-bottom: 0px;
       cursor: pointer;

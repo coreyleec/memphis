@@ -206,9 +206,12 @@ const App = () => {
   const deleteLink = (e, linkObj) => {
       e.preventDefault()
     let updatedLinksArr = userLinks.filter((link) => link.id !== linkObj.id);
-    fetch(`http://localhost:3000/links/${linkObj.id}/`, { method: "DELETE" })
+    setUserLinks(updatedLinksArr)
+    
+    fetch(`http://localhost:3000/api/v1/links/${linkObj.id}/`, { method: "DELETE" })
       .then((resp) => resp.json())
-      .then(() => console.log("updatedLinksArr", updatedLinksArr, "linkObj", linkObj))};
+      .then(() => console.log("updatedLinksArr", updatedLinksArr, "linkObj", linkObj))
+    };
 
   const deleteFolder = (folderObj) => {
     let updatedFoldersArr = userFolders.filter((folder) => folder.id !== folderObj.id);

@@ -128,7 +128,7 @@ const StyledInput = styled.input`
   font-size: 2rem;
   padding: 0px;
   text-align: left;
-  width: 75%;
+  width: 85%;
   color: #757575;
 `;
 
@@ -149,7 +149,7 @@ const StyledUrl = styled.textarea`
   }
   :hover{
       display: show;
-  ::-webkit-scrollbar{width: 2px;}
+    ::-webkit-scrollbar{width: 2px;}
     ::-webkit-scrollbar-thumb{border: 1px solid black;}
   }
 `;

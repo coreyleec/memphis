@@ -64,11 +64,10 @@ const SideBar = (props) => {
           {/* <div className={"sidebar-content-closed"}> */}
           <div className="scrollable" >
           <div className="break"></div>
-          <div style={{"display": "block"}}>
             <AboutMe {...props} />
             <SideBarFolder {...props} />
             <SideBarLinks {...props} />
-            </div>
+
             <br></br>
             <br></br>
             <br></br>

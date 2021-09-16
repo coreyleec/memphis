@@ -24,7 +24,7 @@ button {
   display:flex;
   justify-content: space-between;
   /* margin-right: 5; */
-  width: 96%;
+  width: 96.6%;
 }
 
 .side-bar-add-button {
@@ -43,7 +43,8 @@ input:-webkit-autofill {
 
 .button-flex {
     margin: 0;  
-    width: 16%;
+    width: 14%;
+    padding-bottom: 5px;
     display:flex;
     justify-content: space-between;  
 }
@@ -71,7 +72,7 @@ input:-webkit-autofill {
   position: absolute;
   }
   .scrollable {
-    display: inline-block;
+    
     height: 700px;
     overflow-y: scroll;
   }
