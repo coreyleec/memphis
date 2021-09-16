@@ -87,7 +87,7 @@ const submitLinkCloseForm = (e) => {
             ></StyledInput>
 
             <SubtractButton 
-            onCLick={(e) => props.deleteFolder(e, link.id)} >-</SubtractButton>
+            onClick={(e) => props.deleteLink(e, link)} >-</SubtractButton>
 
             </div>
 {/* LINK URL INPUT */}
@@ -119,7 +119,7 @@ const SubtractButton = styled.button`
 background-color: transparent;
   border: none;
   font-size: 2rem;
-  color: #757575;
+  color: red;
   line-height: 0px;
   padding: 0;
   transform: scale(2, 1);

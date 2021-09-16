@@ -1,28 +1,13 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import {
-  useEffect,
-  useState,
-  useRef,
-  forwardRef,
-  useImperativeHandle,
-} from "react";
-import { Modal, Button } from "react-bootstrap";
-import {
-  GridContextProvider,
-  GridDropZone,
-  GridItem,
-  swap,
-} from "react-grid-dnd";
-// import { useHistory } from "react-router-dom"
+import { BrowserRouter as Router } from "react-router-dom";
+import { useEffect, useState} from "react";
+import { Modal } from "react-bootstrap";
+import {GridContextProvider, GridDropZone, GridItem, swap} from "react-grid-dnd";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
-// import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import Header from "./containers/Header";
 import SideBar from "./containers/SideBar";
 import AsideRight from "./containers/AsideRight";
 import UserLoginSignup from "./containers/UserLoginSignup";
-import Test from "./components/Test";
 import styled from "styled-components";
 
 const App = () => {
@@ -218,34 +203,20 @@ const App = () => {
       });
   };
 
-  // deletePost = (postObj) => {
-  //   let newPosts = this.state.posts.filter((post) => post.id !== postObj.id);
-  //   fetch(`http://localhost:3000/posts/${postObj.id}`, { method: "DELETE" })
-  //     .then((resp) => resp.json())
-  //     .then(() => this.setState({ posts: newPosts }));
-  // };
+  const deleteLink = (e, linkObj) => {
+      e.preventDefault()
+    let updatedLinksArr = userLinks.filter((link) => link.id !== linkObj.id);
+    fetch(`http://localhost:3000/links/${linkObj.id}/`, { method: "DELETE" })
+      .then((resp) => resp.json())
+      .then(() => console.log("updatedLinksArr", updatedLinksArr, "linkObj", linkObj))};
 
-  const deleteFolder = (e, folderId) => {
-    e.preventDefault();
-    // console.log(e);
-    console.log(folderId)
-    // console.log(folder.id)
-
-    fetch(`http://localhost:3000/api/v1/folders/${folderId}/`, {
-      method: "DELETE"
-      // ,
-      // headers: {
-      //   Authorization: `Bearer ${localStorage.token}`,
-      //   "Content-Type": "application/json",
-      // },
-    })
+  const deleteFolder = (folderObj) => {
+    let updatedFoldersArr = userFolders.filter((folder) => folder.id !== folderObj.id);
+    setUserFolders(updatedFoldersArr)
+    fetch(`http://localhost:3000/api/v1/folders/${folderObj.id}/`, {method: "DELETE"})
       .then((res) => res.json())
-      .then((folderObj) => {
-        console.log(folderObj);
-        setUserFolders(userFolders);
-      });
-  };
-  // console.log(userFolders)
+      .then(() => console.log("folderObj", folderObj, "updatedFoldersArr", updatedFoldersArr))};
+
 
   // LINKS //
 
@@ -329,14 +300,7 @@ const App = () => {
       });
   };
 
-  // setUserFolders(
-  //   userFolders.map((folder) => {
-  //     if (folder.id === folderObj.id) return folderObj;
-  //     else return folder;
 
-  const sayHello = () => {
-    console.log("hello");
-  };
 
 
   // EDIT USER INFO
@@ -445,33 +409,6 @@ const App = () => {
         );
       });
   };
-
-  // const updatePhotoOrder = (e, folderId) => {
-  //   e.preventDefault()
-  //   console.log(e)
-  //   console.log(folderId)
-  //   fetch(`http://localhost:3000/api/v1/folders/${folderId}`, {
-  //       method: 'PATCH'
-  //       , headers: {
-  //           Authorization: `Bearer ${localStorage.token}`,
-  //           "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({
-  //           name: name,
-  //           url: url,
-  //           details: details,
-  //           user_id: photo.user_id
-  //       })
-  //   })
-  //   .then(res => res.json())
-  //   .then(setUserFolders( userFolders.map(folder => {
-  //       if(folder.id === folderObj.id) return folderObj
-  //       else return folder
-  //     })
-  //   )
-  // }
-  // )
-  // }
 
   // CHOOSE FOLDER
   let folderIndex = 0;
@@ -637,8 +574,8 @@ const App = () => {
       <div className={"cont"}>
         <SideBar
           edit={edit}
+          deleteLink={deleteLink}
           deleteFolder={deleteFolder}
-          sayHello={sayHello}
           userFolders={userFolders}
           addFolder={addFolder}
           chooseFolder={chooseFolder}

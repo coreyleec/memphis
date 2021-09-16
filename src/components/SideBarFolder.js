@@ -24,18 +24,22 @@ const submitCloseForm = (e) => {
                         <button className="side-bar-add-button" onClick={() => {setNewFolder(!newFolder)}} >+</button>}
                     </div>
 {/* NEW FOLDER */}
+                <div>
             { newFolder && props.edit && 
                         <form onSubmit={(e) => submitCloseForm(e)}
                         
                         > 
                         <StyledInput type="text" placeholder="folder name" 
                         onChange={(e) => setFolderName(e.target.value)}></StyledInput> </form>}
+</div>
+
 {/* EDIT FOLDER NAME */}
             {props.userFolders != null && props.edit 
                     ? props.userFolders.map(folder =>   
-                    <div>
-                        <form className="subtract-item"  folder={folder} key={folder.id} 
-                            onSubmit={(e) => props.updateFolder(e, folderName, folder)}>
+                    <div className="subtract-item" key={folder.id} folder={folder}>
+                        <form folder={folder} key={folder.id} 
+                            onSubmit={(e) => props.updateFolder(e, folderName, folder)}
+                            >
                                 <StyledInput type="text" 
                                 defaultValue={folder.name} 
                                 // className="folder-form"
@@ -43,9 +47,9 @@ const submitCloseForm = (e) => {
                                 >
 
                                 </StyledInput>
-                        <SubtractButton 
-                        onClick={(e) => props.deleteFolder(e, folder.id)} >-</SubtractButton>
                         </form>
+                        <SubtractButton folder={folder} key={folder.id} 
+                        onClick={() => props.deleteFolder(folder)} >-</SubtractButton>
                         </div>
 )
                     : props.currentUser && props.userFolders && props.userFolders.map(folder => <StyledP onClick={(e) => props.chooseFolder(folder.id)} key={folder.id}>{folder.name}</StyledP>)
@@ -60,7 +64,7 @@ const SubtractButton = styled.button`
 background-color: transparent;
   border: none;
   font-size: 2rem;
-  color: #757575;
+  color: red;
   line-height: 0px;
   padding: 0;
   transform: scale(2, 1);
