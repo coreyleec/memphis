@@ -9,11 +9,21 @@ const SideBarFolder = (props) => {
 const [newFolder, setNewFolder] = useState(false)
 const newFolderToggle = () => {setNewFolder(!newFolder)}
 const [folderName, setFolderName] = useState("")
+const [selectedFolder, setSelectedFolder] = useState(false)
 
 const submitCloseForm = (e) => {
     props.addFolder(e, folderName) 
     setNewFolder(!newFolder)
 }
+const [folderToggle, setVariable] = useState(true)
+const underlineFolder = (folder) => {
+    // props.chooseFolder(folder.id)
+    folderToggle === true
+    ? setVariable(!folderToggle)
+    : setVariable(!folderToggle)
+    console.log(folder)
+}
+
 // onClick={() => {setNewFolder(!newFolder)}} 
     return (
         <div>
@@ -52,7 +62,7 @@ const submitCloseForm = (e) => {
                         onClick={() => props.deleteFolder(folder)} >-</SubtractButton>
                         </div>
 )
-                    : props.currentUser && props.userFolders && props.userFolders.map(folder => <StyledP onClick={(e) => props.chooseFolder(folder.id)} key={folder.id}>{folder.name}</StyledP>)
+                    : props.currentUser && props.userFolders && props.userFolders.map(folder => <StyledP folderToggle={folderToggle}  onClick={() => underlineFolder(folder.id)} key={folder.id}>{folder.name}</StyledP>)
                         }
         </div>
     )
@@ -81,6 +91,7 @@ line-height: 1.5;
 `
 const StyledP = styled.p`
     font-size: 2rem;
+    text-decoration: ${({folderToggle}) => (folderToggle ? "underline" : "null")};
       text-align: left;
       width: 85%;
       color: black;
