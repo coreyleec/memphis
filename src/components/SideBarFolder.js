@@ -15,21 +15,21 @@ const submitCloseForm = (e) => {
     props.addFolder(e, folderName) 
     setNewFolder(!newFolder)
 }
-const [folderToggle, setVariable] = useState(true)
+const [clickedFolder, setClickedFolder] = useState()
+const [folderToggle, setFolderToggle] = useState(true)
 const underlineFolder = (folder) => {
-    // props.chooseFolder(folder.id)
-    folderToggle === true
-    ? setVariable(!folderToggle)
-    : setVariable(!folderToggle)
+    // setChosenFolder(folder.id)
+    setClickedFolder(folder)
+     setFolderToggle(!folderToggle)
     console.log(folder)
 }
-
+// props.folderShown
 // onClick={() => {setNewFolder(!newFolder)}} 
     return (
         <div>
 {/* FOLDER TOGGLE */}
                     <div className="add-item" >
-                        <p>folders</p>
+                        <p style={{"fontStyle": "italic"}} >folders</p>
             {props.edit && 
                         <button className="side-bar-add-button" onClick={() => {setNewFolder(!newFolder)}} >+</button>}
                     </div>
@@ -62,7 +62,8 @@ const underlineFolder = (folder) => {
                         onClick={() => props.deleteFolder(folder)} >-</SubtractButton>
                         </div>
 )
-                    : props.currentUser && props.userFolders && props.userFolders.map(folder => <StyledP folderToggle={folderToggle}  onClick={() => underlineFolder(folder.id)} key={folder.id}>{folder.name}</StyledP>)
+                    : props.currentUser && props.userFolders && props.userFolders.map(folder => <StyledP key={folder.id} style={ folder.id === clickedFolder ? {textDecoration: "underline"} : null} 
+                        clickedFolder={clickedFolder} folderShown={props.folderShown} folderToggle={folderToggle}  onClick={(event) => {props.chooseFolder(folder.id); underlineFolder(folder.id)}} >{folder.name}</StyledP>)
                         }
         </div>
     )
@@ -91,10 +92,26 @@ line-height: 1.5;
 `
 const StyledP = styled.p`
     font-size: 2rem;
-    text-decoration: ${({folderToggle}) => (folderToggle ? "underline" : "null")};
       text-align: left;
       width: 85%;
       color: black;
       margin-bottom: 0px;
       cursor: pointer;
+    
+}
+
+      /* :nth-child(2) a {
+  overflow: hidden;
+} */
+
+/* ::after {
+  opacity 1;
+  transform: translate3d(-100%, 0, 0);
+}
+
+:hover::after,
+:focus::after{
+  transform: translate3d(0, 0, 0);
+} */
+
 `

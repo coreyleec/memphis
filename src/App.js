@@ -27,7 +27,7 @@ const App = () => {
     setCurrentUser(user);
     user != null && setUserProfile(!userProfile);
   };
-  console.log(currentUser.id);
+  // console.log(currentUser.id);
 
   // const handleUserPhotos = (userData) => {
   //   setUserPhotos(userData.sort((a,b) => a.id - b.id))
@@ -41,6 +41,8 @@ const App = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  // const [folderIndex, setFolderIndex] = useState()
+
   const handleName = (name) => {
     setName(name);
   };
@@ -80,6 +82,9 @@ const App = () => {
         setUserFolders(user.folders);
         setPhotos(user.photos);
         setUserComments(user.comments);
+        setFolderShown(user.folders.reverse()[0].id)
+        console.log(folderShown)
+// console.log(user.folders.reverse())
         // setFolderIds(user.folders.map(folder => folder.id))
         // history.push("/userprofile")
         // console.log(folderIds[0])
@@ -415,7 +420,7 @@ const App = () => {
 
   // CHOOSE FOLDER
   let folderIndex = 0;
-  const [folderShown, setFolderShown] = useState(folderIndex);
+  const [folderShown, setFolderShown] = useState(0);
 
   const [folderId, setFolderId] = useState();
   let userFolderIds = userFolders.map((folder) => folder.id);
@@ -438,7 +443,9 @@ const App = () => {
   //     .then(resp => resp.json())
   //     .then(() => setUserFolders(updatedFolders))
   // }
+  const [chosenFolder, setChosenFolder] = useState(0)
   const chooseFolder = (folderId) => {
+    setFolderShown(folderId)
     fetch(`http://localhost:3000/api/v1/folders/${folderId}/`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -576,6 +583,7 @@ const App = () => {
     <Router>
       <div className={"cont"}>
         <SideBar
+          folderShown={folderShown}
           edit={edit}
           deleteLink={deleteLink}
           deleteFolder={deleteFolder}
@@ -618,48 +626,7 @@ const App = () => {
                     style={{ height: "1000px" }}
                   >
                     {/* ONLOAD PHOTOS FROM FOLDER AT 0 INDEX LOAD FIRST */}
-                    {
-                    folderToggle != true && userFolderIds != null
-                      ? photos != null &&
-                        photos
-                          .filter(
-                            (photos) =>
-                              (photos.folder_id = userFolderIds[folderShown])
-                          )
-                          .map((photo) => (
-                            // photos.sort(sortPhotos).map((photo) => (
-                            <GridItem key={photo.id}>
-                              <div
-                                className={
-                                  !edit
-                                    ? photo.url != null
-                                      ? "picture"
-                                      : "edit-picture"
-                                    : photo.url != null
-                                    ? "picture"
-                                    : "emptyBox"
-                                }
-                                // className={photo.url != null? "picture" : "emptyBox"}
-                              >
-                                <img
-                                  // onClick={() => handleClick(photo)}
-                                  onClick={() => modalToggle(photo)}
-                                  loading="lazy"
-                                  onDragStart={(e) => {
-                                    e.preventDefault();
-                                  }}
-                                  // src={photo.url}
-                                  src={
-                                    photo.url != null
-                                      ? photo.url
-                                      : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-                                  }
-                                  className="photo"
-                                />
-                              </div>
-                            </GridItem>
-                          ))
-                      : photos.map((photo) => (
+                    {photos != undefined && photos.map((photo) => (
                           <GridItem
                             key={photo.id}
                             // style={photo.url = null && edit ? mountedStyle : unmountedStyle}
@@ -692,7 +659,8 @@ const App = () => {
                               />
                             </div>
                           </GridItem>
-                        ))}
+                        ))
+} 
                   </GridDropZone>
                   {/* {placeholder} */}
                 </GridContextProvider>
